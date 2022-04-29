@@ -9,8 +9,21 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
 
   title = 'scout-badminton';
+  jogadores : any[] = [];
 
   constructor(private http: HttpClient) {
+    this.getJogadores();
+  }
+
+  public getJogadores(){
+
+    this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
+    .subscribe(
+    ret => {
+
+      this.jogadores = ret.jogadores_badminton;
+      
+    })
   }
 
 }
