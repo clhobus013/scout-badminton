@@ -1,13 +1,20 @@
+<div class="row-12 menu p-3 px-5 d-flex flex-wrap align-center flex-column">
 
-<div>
-  <h1>Teste</h1>
+    <h1 class="text-center p-2">Scout Badminton</h1>
 
-  <div *ngFor="let jogador of jogadores ">
-    <p>Nome: {{jogador.jogador_nome}}</p>
-    <p>Email: {{jogador.jogador_email}}</p>
-  </div>
+    <div class="col-12 p-2 m-auto d-flex justify-content-center">
+      <fa-icon [icon]="faCoffee" size="4x" class="circle p-3"></fa-icon>
+    </div>
 
-  <H2>FUNCIONOOOUUU</H2>
+    <div class="col-12 mw-50 h-50 m-auto d-flex flex-wrap flex-column justify-content-around">
+    
+      <button type="button" class="btn btn-light shadow-sm">Cadastrar jogador</button>
+      <button type="button" class="btn btn-light shadow-sm">Cadastrar partida</button>
+      <button type="button" class="btn btn-light shadow-sm">Iniciar partida</button>
+      <button type="button" class="btn btn-light shadow-sm">Partidas cadastradas</button>
+      <button type="button" class="btn btn-light shadow-sm">Jogadores cadastrados</button>
+      <button type="button" class="btn btn-light shadow-sm">Gerar relatório da partida</button>
+      
+    </div>
 
-  <img src="https://c.tenor.com/3YaztZFL3oEAAAAd/yoshi-yoshi-dan%C3%A7ando.gif" alt="Yoshi dancando">
 </div>
