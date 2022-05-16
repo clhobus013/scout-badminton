@@ -1,0 +1,47 @@
+<div class="container-fluid menu p-5">
+
+    <div class="row gy-3">
+      
+        <div class="title d-flex align-items-center p-0">
+            <div class="d-flex justify-content-center">
+                <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle p-2" (click)="goBack()"></fa-icon>
+            </div>
+            <h1 class="col-10 text-center p-1">Cadastrar jogador</h1>
+        </div>
+
+        <div class="col-12 input-group mb-3 p-0">
+            <label for="nome-jogador" class="col-12 py-1">Nome completo</label>
+            <input [(ngModel)]="jogador.nome" type="text" class="form-control rounded" placeholder="Nome do jogador" aria-label="Nome do jogador" aria-describedby="nome-jogador">
+
+            <label for="email-jogador" class="col-12 py-1">E-mail</label>
+            <input [(ngModel)]="jogador.email" type="email" class="form-control rounded" placeholder="E-mail do jogador" aria-label="E-mail do jogador" aria-describedby="email-jogador">
+
+            <label for="telefone-jogador" class="col-12 py-1">Telefone</label>
+            <input [(ngModel)]="jogador.telefone" type="number" class="form-control rounded" placeholder="Telefone do jogador" aria-label="Telefone do jogador" aria-describedby="telefone-jogador">
+
+            <label for="dt-nasc-jogador" class="col-12 py-1">Data de nascimento</label>
+            <input [(ngModel)]="jogador.data_nascimento" type="date" class="form-control rounded" placeholder="dd-mm-aaaa" aria-label="dd-mm-aaaa" aria-describedby="dt-nasc-jogador">
+
+            <label for="dt-nasc-jogador" class="col-12 py-1">Lateralidade</label>
+            <select [(ngModel)]="jogador.lateralidade" class="col-12 form-select rounded" aria-label="lateralidade" #title="ngModel" title="teste">
+                <option [selected] disabled>Lateralidade</option>
+                <option value="destro">Destro</option>
+                <option value="canhoto">Canhoto</option>
+                <option value="ambidestro">Ambidestro</option>
+            </select>
+        </div>
+
+        <div class="input-group-append p-0">
+            <div class="col-12 d-flex justify-content-end">
+                <fa-icon [icon]="faCheck" size="lg" class="btn rounded-circle circle p-2" (click)="adicionaJogador()"></fa-icon>
+            </div>
+        </div>
+  
+    </div>
+  
+</div>
+
+<!-- 
+    Ajustar botão concluido.
+    Ajustar col-md-6 nos inputs.
+ -->

@@ -6,7 +6,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css', '../app.component.css']
 })
 export class HomeComponent implements OnInit {
 
@@ -16,22 +16,26 @@ export class HomeComponent implements OnInit {
   jogadores : any[] = [];
 
   constructor(private http: HttpClient, private router: Router) {
-    this.getJogadores();
+    // this.getJogadores();
   }
 
   ngOnInit(): void {
   }
 
-  public getJogadores(){
+  // public getJogadores(){
 
-    this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
-    .subscribe(
-    ret => {
+  //   this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
+  //   .subscribe(
+  //   ret => {
 
-      this.jogadores = ret.jogadores_badminton;
+  //     ret.jogadores_badminton.forEach((jogador: Jogador) => {
+  //       this.jogadores.push(jogador);
+  //     });
       
-    })
-  }
+  //     console.log(this.jogadores);
+      
+  //   })
+  // }
 
   goToCadastroJogador(){
     this.router.navigate(['/cadastro-jogador']);
