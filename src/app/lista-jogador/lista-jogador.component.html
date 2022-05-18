@@ -1,0 +1,42 @@
+<div class="container-fluid menu p-5">
+
+    <div class="row gy-3">
+      
+        <div class="title d-flex align-items-center p-0">
+            <div class="d-flex justify-content-center">
+                <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle p-2" (click)="goBack()"></fa-icon>
+            </div>
+            <h1 class="col-10 text-center p-1">Jogadores Cadastrados</h1>
+        </div>
+
+        <div *ngFor="let jogador of jogadores" class="card col-12 p-2">
+
+            <h5 class="text-center">{{jogador.nome}}</h5>
+
+            <div class="col-12 px-3">
+                
+                <div class="col-8 m-auto d-inline-block">
+                    <p>{{jogador.email}}</p>
+                    <p>{{jogador.data_nascimento}}</p>
+                </div>
+    
+                <div class="col-4 d-inline-block align-items-end">
+                    <p class="text-end">{{jogador.telefone}}</p>
+                    <p class="text-end">{{jogador.lateralidade == 'naoinformado' ? '' : jogador.lateralidade}}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="input-group-append p-0">
+            <div class="col-12 d-flex justify-content-end">
+                <fa-icon [icon]="faCheck" size="lg" class="btn rounded-circle circle p-2" (click)="goHome()"></fa-icon>
+            </div>
+        </div>
+  
+    </div>
+  
+</div>
+
+<!-- Ajustar botao check para flutuar -->

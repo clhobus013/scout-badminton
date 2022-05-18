@@ -12,12 +12,14 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { HomeComponent } from './home/home.component';
 import { CadastroJogadorComponent } from './cadastro-jogador/cadastro-jogador.component';
+import { ListaJogadorComponent } from './lista-jogador/lista-jogador.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CadastroJogadorComponent,
+    ListaJogadorComponent,
   ],
   imports: [
     BrowserModule,
