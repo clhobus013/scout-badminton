@@ -20,12 +20,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToCadastroJogador(){
-    this.router.navigate(['/cadastro-jogador']);
-  }
-
-  goToListaJogador(){
-    this.router.navigate(['/lista-jogador']);
-  }
-
 }
