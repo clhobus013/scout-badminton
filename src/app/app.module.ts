@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home/home.component';
 import { CadastroJogadorComponent } from './cadastro-jogador/cadastro-jogador.component';
 import { ListaJogadorComponent } from './lista-jogador/lista-jogador.component';
+import { CadastroPartidaComponent } from './cadastro-partida/cadastro-partida.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ListaJogadorComponent } from './lista-jogador/lista-jogador.component';
     HomeComponent,
     CadastroJogadorComponent,
     ListaJogadorComponent,
+    CadastroPartidaComponent,
   ],
   imports: [
     BrowserModule,
