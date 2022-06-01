@@ -28,7 +28,6 @@ export class CadastroPartidaComponent implements OnInit {
 
   ngOnInit(): void {
     this.partida = new Partida();
-    console.log(this.partida.jogador_1);
     this.getJogadores();
   }
 
@@ -57,9 +56,6 @@ export class CadastroPartidaComponent implements OnInit {
       return false;
     }
 
-    console.log("Entrou");
-
-    console.log(this.partida.tipo_jogo)
 
     this.http.post<any>('https://scoutbadmintonapi.herokuapp.com/post_partida', this.partida)
     .subscribe(
@@ -142,8 +138,6 @@ export class CadastroPartidaComponent implements OnInit {
       }
 
     }
-
-    // this.partida.jogador_1 = parseInt(this.partida.jogador_1);
 
     console.log(this.partida);
 
