@@ -21,6 +21,13 @@ h5{
     justify-content: center;
 }
 
+.fab{
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
 .btn:active {
     transform: translateY(-1px);
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2) !important;

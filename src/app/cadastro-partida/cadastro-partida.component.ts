@@ -56,7 +56,6 @@ export class CadastroPartidaComponent implements OnInit {
       return false;
     }
 
-
     this.http.post<any>('https://scoutbadmintonapi.herokuapp.com/post_partida', this.partida)
     .subscribe(
       resultado => {
@@ -68,6 +67,7 @@ export class CadastroPartidaComponent implements OnInit {
         }
         console.log(resultado);
         this.toastr.success('Partida cadastrada com sucesso');
+        this.partida = new Partida();
       },
       erro => {
         this.toastr.error(erro, 'Ocorreu um erro ao salvar a partida. Tente novamente mais tarde');

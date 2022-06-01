@@ -51,6 +51,11 @@ export class CadastroJogadorComponent implements OnInit {
         }
         console.log(resultado);
         this.toastr.success('Jogador cadastrado com sucesso');
+
+        this.jogador= new Jogador();
+
+        this.jogador.lateralidade = 'Lateralidade';
+        this.jogador.foto = '';
       },
       erro => {
         this.toastr.error(erro, 'Ocorreu um erro ao salvar jogador. Tente novamente mais tarde');
