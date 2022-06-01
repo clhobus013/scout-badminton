@@ -11,48 +11,47 @@
 
         <div class="col-12 input-group mb-3 p-0">
             <label for="nome-partida" class="col-12 py-1">Nome da partida</label>
-            <input [(ngModel)]="partida.partida_nome" type="text" class="form-control rounded" placeholder="Nome da partida" aria-label="Nome da partida" aria-describedby="nome-partida">
+            <input [(ngModel)]="partida.nome" type="text" class="form-control rounded" placeholder="Nome da partida" aria-label="Nome da partida" aria-describedby="nome-partida">
 
             <label for="dt-partida" class="col-12 py-1">Data da partida</label>
             <input [(ngModel)]="partida.data" type="date" class="form-control rounded" placeholder="dd-mm-aaaa" aria-label="dd-mm-aaaa" aria-describedby="dt-partida">
 
             <label for="tipo-partida" class="col-12 py-1">Tipo</label>
             <select [(ngModel)]="partida.tipo_jogo" class="col-12 form-select" aria-label="select-tipo-partida">
-                <option [disabled] selected>Selecione um tipo de partida</option>
-                <option *ngFor="let tipo of tipos; let i=index" value="i">{{tipo}}</option>
+                <option selected [value]="undefined">Selecione um tipo de partida</option>
+                <option *ngFor="let tipo of tipos; let i=index" [value]="tipo.toLowerCase()">{{tipo}}</option>
             </select>
-            <!-- ajustar para comecar selecionado primeria opc -->
 
             <label for="modalidade" class="col-12 py-1">Modalidade</label>
             <select [(ngModel)]="partida.modalidade" class="col-12 form-select" aria-label="select-modalidade">
-                <option selected>Selecione uma modalidade</option>
-                <option *ngFor="let modalidade of modalidades; let i=index" value="i">{{modalidade}}</option>
+                <option selected value="undefined">Selecione uma modalidade</option>
+                <option *ngFor="let modalidade of modalidades; let i=index" [value]="modalidade.toLowerCase()">{{modalidade}}</option>
             </select>
 
             <label for="jogador-1" class="col-12 py-1">Jogador 1</label>
-            <select class="col-12 form-select" aria-label="select-jogador-1">
-                <option selected>Selecione um jogador</option>
-                <option *ngFor="let jogador of jogadores" value="jogador.id">{{jogador.nome}}</option>
+            <select [(ngModel)]="partida.jogador_1" class="col-12 form-select" aria-label="select-jogador-1">
+                <option selected value="undefined">Selecione um jogador</option>
+                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
             </select>
 
-            <label *ngIf="partida.tipo_jogo == '1'" for="jogador-2" class="col-12 py-1">Jogador 2</label>
-            <select *ngIf="partida.tipo_jogo == '1'" class="col-12 form-select" aria-label="select-jogador-2">
-                <option selected>Selecione um jogador</option>
-                <option *ngFor="let jogador of jogadores" value="jogador.id">{{jogador.nome}}</option>
+            <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-2" class="col-12 py-1">Jogador 2</label>
+            <select [(ngModel)]="partida.jogador_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="select-jogador-2">
+                <option selected value="undefined">Selecione um jogador</option>
+                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
             </select>
 
             <h5 class="col-12 text-center m-auto p-2"><b>Jogadore(s) Adverário(s)</b></h5>
 
             <label for="jogador-adv-1" class="col-12 py-1">Jogador Adverário 1</label>
-            <select class="col-12 form-select" aria-label="select-jogador-adv-1">
-                <option selected>Selecione um jogador Adversário</option>
-                <option *ngFor="let jogador of jogadores" value="jogador.id">{{jogador.nome}}</option>
+            <select [(ngModel)]="partida.jogador_adversario_1" class="col-12 form-select" aria-label="select-jogador-adv-1">
+                <option selected value="undefined">Selecione um jogador Adversário</option>
+                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
             </select>
 
-            <label *ngIf="partida.tipo_jogo == '1'" for="jogador-adv-2" class="col-12 py-1">Jogador Adversário 2</label>
-            <select *ngIf="partida.tipo_jogo == '1'" class="col-12 form-select" aria-label="select-adv-jogador-2">
-                <option selected>Selecione um jogador Adversário</option>
-                <option *ngFor="let jogador of jogadores" value="jogador.id">{{jogador.nome}}</option>
+            <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-adv-2" class="col-12 py-1">Jogador Adversário 2</label>
+            <select [(ngModel)]="partida.jogador_adversario_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="select-adv-jogador-2">
+                <option selected value="undefined">Selecione um jogador Adversário</option>
+                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
             </select>
 
         </div>

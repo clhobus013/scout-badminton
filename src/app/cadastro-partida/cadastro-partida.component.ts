@@ -4,18 +4,7 @@ import { Location } from '@angular/common';
 import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Jogador } from '../Classes/Jogador';
-
-class Partida {
-  // Se usar em mais lugares, criar arquivo p classe;
-  partida_nome: string;
-  data: string;
-  tipo_jogo: string;
-  modalidade: string;
-  jogador_1: string;
-  jogador_2: string;
-  jogador_adversario_1: string;
-  jogador_adversario_2: string;
-}
+import { Partida } from '../Classes/Partida';
 
 @Component({
   selector: 'app-cadastro-partida',
@@ -39,6 +28,7 @@ export class CadastroPartidaComponent implements OnInit {
 
   ngOnInit(): void {
     this.partida = new Partida();
+    console.log(this.partida.jogador_1);
     this.getJogadores();
   }
 
@@ -69,6 +59,8 @@ export class CadastroPartidaComponent implements OnInit {
 
     console.log("Entrou");
 
+    console.log(this.partida.tipo_jogo)
+
     this.http.post<any>('https://scoutbadmintonapi.herokuapp.com/post_partida', this.partida)
     .subscribe(
       resultado => {
@@ -93,7 +85,7 @@ export class CadastroPartidaComponent implements OnInit {
 
   public validaPartida(){
 
-    if (!this.partida.partida_nome){
+    if (!this.partida.nome){
       this.toastr.error('Por favor, adicione um nome válido', 'Nome não informado');
       return false;
     }
@@ -109,7 +101,7 @@ export class CadastroPartidaComponent implements OnInit {
     }
 
     if (!this.partida.modalidade){
-      this.toastr.error('Por favor, adicione uma data válida', 'Data de nascimento não informado');
+      this.toastr.error('Por favor, adicione uma modalidade válida', 'Modalidade da partida não informada');
       return false;
     }
 
@@ -123,7 +115,12 @@ export class CadastroPartidaComponent implements OnInit {
       return false;
     }
 
-    if (this.partida.tipo_jogo == 'duplo'){
+    if ( this.partida.jogador_1 == this.partida.jogador_adversario_1 ){
+      this.toastr.error('Não é possível selecionar jogadores iguais', 'Selecione outro jogador');
+      return false;
+    }
+
+    if (this.partida.tipo_jogo == 'dupla'){
       if (!this.partida.jogador_2){
         this.toastr.error('Por favor, adicione um segundo jogador válido', 'Segundo jogador não informado');
         return false;
@@ -133,9 +130,20 @@ export class CadastroPartidaComponent implements OnInit {
         this.toastr.error('Por favor, adicione um segundo jogador adversário válido', 'Segundo jogador adversário não informado');
         return false;
       }
+
+      if ( this.partida.jogador_adversario_1 == this.partida.jogador_adversario_2 ||
+        this.partida.jogador_1 == this.partida.jogador_2 ||
+        this.partida.jogador_1 == this.partida.jogador_adversario_2 ||
+        this.partida.jogador_2 == this.partida.jogador_adversario_1 ||
+        this.partida.jogador_2 == this.partida.jogador_adversario_2
+      ){
+        this.toastr.error('Não é possível selecionar jogadores iguais', 'Selecione outro jogador');
+        return false;
+      }
+
     }
 
-    // VALIDAR PARA NAO SELECIONAR O MESMO JOGADOR 
+    // this.partida.jogador_1 = parseInt(this.partida.jogador_1);
 
     console.log(this.partida);
 
