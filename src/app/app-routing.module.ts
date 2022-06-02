@@ -5,13 +5,15 @@ import { CadastroJogadorComponent } from './cadastro-jogador/cadastro-jogador.co
 import { CadastroPartidaComponent } from './cadastro-partida/cadastro-partida.component';
 import { ListaJogadorComponent } from './lista-jogador/lista-jogador.component';
 import { ListaPartidaComponent } from './lista-partida/lista-partida.component';
+import { GolpesComponent } from './golpes/golpes.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cadastro-jogador', component: CadastroJogadorComponent },
   { path: 'cadastro-partida', component: CadastroPartidaComponent },
   { path: 'lista-jogador', component: ListaJogadorComponent },
-  { path: 'lista-partida', component: ListaPartidaComponent }
+  { path: 'lista-partida', component: ListaPartidaComponent },
+  { path: 'golpes', component: GolpesComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,18 @@
+
+<div class="bg-golpes col-12 d-flex flex-wrap p-2" style="position: relative;">
+    <div class="d-flex justify-content-center" style="position:absolute; top: 0.7em; left: 0.7em;">
+        <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle p-2" (click)="goBack()"></fa-icon>
+    </div>
+    <div *ngFor="let golpe of filtraGolpe()" class="col-5 d-inline-block m-auto pb-2">
+        <h6 class="text-center m-0">{{golpe.descricao}}</h6>
+        <div class="d-flex justify-content-around">
+            <button type="button" class="btn btn-success btn-sm col-4">
+                <fa-icon [icon]="faCheck" size="lg"></fa-icon> Acerto
+            </button>
+            <button type="button" class="btn btn-danger btn-sm col-4">
+                <fa-icon [icon]="faXmark" size="lg"></fa-icon> Erro
+            </button>
+        </div>
+    </div>
+</div>
+

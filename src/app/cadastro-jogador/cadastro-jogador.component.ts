@@ -24,7 +24,7 @@ export class CadastroJogadorComponent implements OnInit {
   ngOnInit(): void {
     this.jogador= new Jogador();
 
-    this.jogador.lateralidade = 'Lateralidade';
+    this.jogador.lateralidade = 'naoinformado';
     this.jogador.foto = '';
   }
 
@@ -37,8 +37,6 @@ export class CadastroJogadorComponent implements OnInit {
     if (!this.validaJogador()){
       return false;
     }
-
-    console.log("Entrou");
 
     this.http.post<any>('https://scoutbadmintonapi.herokuapp.com/post_jogador', this.jogador)
     .subscribe(
@@ -54,7 +52,7 @@ export class CadastroJogadorComponent implements OnInit {
 
         this.jogador= new Jogador();
 
-        this.jogador.lateralidade = 'Lateralidade';
+        this.jogador.lateralidade = 'naoinformado';
         this.jogador.foto = '';
       },
       erro => {
