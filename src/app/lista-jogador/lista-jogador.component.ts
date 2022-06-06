@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCheck, faEnvelope, faCalendar, faMobileScreen, faUser, faTableTennis } from '@fortawesome/free-solid-svg-icons';
 import { Jogador } from '../Classes/Jogador';
 
 @Component({
@@ -14,6 +14,11 @@ export class ListaJogadorComponent implements OnInit {
 
   faArrowLeft = faArrowLeft;
   faCheck     = faCheck;
+  faEnvelope  = faEnvelope;
+  faCalendar  = faCalendar;
+  faMobileScreen = faMobileScreen;
+  faUser = faUser;
+  faTableTennis = faTableTennis;
 
   jogadores: Jogador[] = [];
 

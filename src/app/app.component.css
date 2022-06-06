@@ -21,6 +21,22 @@ h5{
     justify-content: center;
 }
 
+.circle-yellow{
+    background-color: #F0C808;
+    color: white;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.circle-green{
+    background-color: #1E4727;
+    color: white;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
 .fab{
     position: fixed;
     bottom: 1em;

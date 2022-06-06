@@ -1,4 +1,5 @@
 export class Partida {
+    id: number;
     nome: string;
     data: string;
     tipo_jogo: string;

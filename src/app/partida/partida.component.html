@@ -1,1 +1,73 @@
-<p>partida works!</p>
+<div class="bg-partida">
+
+    <mat-tab-group mat-align-tabs="start">
+        <mat-tab *ngFor="let set of sets" label="Set {{set.ordem}}" (click)="selecionaSet(set.id)">
+
+            <div class="conteudo col-12 p-3">
+
+                <div class="title d-flex align-items-center p-0">
+                    <div class="d-flex justify-content-center">
+                        <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle-yellow p-2" (click)="goBack()"></fa-icon>
+                    </div>
+                    <h1 class="text-center p-1 my-auto">Nome da partida</h1>
+                </div>
+
+                <div class="central">
+                    <div class="users col-12 d-flex ">
+                        <div *ngIf="partida.jogador_1" class="jogador col-3 d-flex flex-wrap mx-auto">
+                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
+                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_1)[0].nome}}</p>
+                        </div>
+
+                        <div *ngIf="partida.jogador_2" class="jogador col-3 d-flex flex-wrap mx-auto">
+                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
+                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_2)[0].nome}}</p>
+                        </div>
+
+                        <div class="bg-placar col-4 p-0">
+
+                            <p class="text-center m-1">{{partida.nome}}</p>
+
+                            <div class="placar d-flex align-items-center justify-content-between rounded p-2" style="background-color:#467E52">
+
+                                <div class="d-flex justify-content-center">
+                                    <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div *ngIf="partida.jogador_adversario_1" class="jogador col-3 d-flex flex-wrap mx-auto">
+                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
+                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_adversario_1)[0].nome}}</p>
+                        </div>
+
+                        <div *ngIf="partida.jogador_adversario_2" class="jogador col-3 d-flex flex-wrap mx-auto">
+                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
+                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_adversario_2)[0].nome}}</p>
+                        </div>
+                    </div>
+
+                    <div class="quadra col-12">
+
+                        <div *ngFor="let quadrante of quadrantes | slice:0:12" class="quadrante col-2 bg-quadra d-inline-block p-3">
+                            <div class="d-flex justify-content-center">
+                                <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        
+            
+
+        </mat-tab>
+    </mat-tab-group>
+</div>

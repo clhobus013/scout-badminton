@@ -6,30 +6,47 @@
             <div class="d-flex justify-content-center">
                 <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle p-2" (click)="goBack()"></fa-icon>
             </div>
-            <h1 class="col-10 text-center p-1">Jogadores Cadastrados</h1>
+            <h1 class="col-10 text-center p-1">Partidas Cadastradas</h1>
         </div>
 
-        <div *ngFor="let partida of partidas" class="card col-12 p-2">
+        <div *ngFor="let partida of partidas" class="col-12 col-md-6 px-2">
 
-            <h5 class="text-center">{{partida.nome}}</h5>
+            <div class="card p-2">
 
-            <div class="col-12 px-2">
-                
-                <p class="text-center col-6 d-inline-block">{{partida.data}}</p>
-                <p class="text-center col-6 d-inline-block">{{partida.tipo_jogo | titlecase}}</p>
+                <h5 class="text-center">{{partida.nome}}</h5>
 
-            </div>
+                <div class="col-12 px-2">
+                    
+                    <p class="text-center col-6 d-inline-block">
+                        <fa-icon [icon]="faCalendar"></fa-icon>
+                         {{partida.data}}
+                    </p>
+                    <p class="text-center col-6 d-inline-block">
+                        <fa-icon [icon]="faTableTennis"></fa-icon>
+                        {{partida.tipo_jogo | titlecase}}
+                    </p>
 
-            <div class="col-12 px-2" style="position: relative;">
-                <div>
-                    <p class="text-center col-6 d-inline-block">{{getJogador(partida.jogador_1)[0].nome}}</p>
-                    <p class="text-center col-6 d-inline-block">{{getJogador(partida.jogador_adversario_1)[0].nome}}</p>
                 </div>
-                <p class="text-center" style="position: absolute; top: 40%;left: 50%;transform: translate(-50%, -50%);"><b>X</b></p>
-                <div *ngIf="partida.jogador_2 && partida.jogador_adversario_2">
-                    <p class="text-center col-6 d-inline-block" >{{partida.jogador_2 ? getJogador(partida.jogador_2)[0].nome : ''}}</p>
-                    <p class="text-center col-6 d-inline-block" >{{partida.jogador_adversario_2 ? getJogador(partida.jogador_adversario_2)[0].nome : ''}}</p>
+
+                <div class="col-12 px-2" style="position: relative;">
+                    <div>
+                        <p class="text-center col-6 d-inline-block"><fa-icon [icon]="faUser"></fa-icon> {{getJogador(partida.jogador_1)[0].nome}}</p>
+                        <p class="text-center col-6 d-inline-block"><fa-icon [icon]="faUser"></fa-icon> {{getJogador(partida.jogador_adversario_1)[0].nome}}</p>
+                    </div>
+                    <p class="text-center" style="position: absolute; top: 40%;left: 50%;transform: translate(-50%, -50%);"><b>X</b></p>
+                    <div *ngIf="partida.jogador_2 && partida.jogador_adversario_2">
+                        <p class="text-center col-6 d-inline-block" ><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_2 ? getJogador(partida.jogador_2)[0].nome : ''}}</p>
+                        <p class="text-center col-6 d-inline-block" ><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_adversario_2 ? getJogador(partida.jogador_adversario_2)[0].nome : ''}}</p>
+                    </div>
+                    <!-- Talvez mudar a cor do icone de usuario para diferencialos -->
                 </div>
+
+                <div class="d-flex align-items-center p-0" style="position: relative;">
+                    <div class="d-flex justify-content-center" style="position: absolute; bottom: 0.5em; right: 0.5em;">
+                        <fa-icon [icon]="faPlay" class="btn rounded-circle circle-yellow p-2" (click)="iniciarPartida(partida)"></fa-icon>
+                    </div>
+                </div>
+
             </div>
             
         </div>

@@ -1,0 +1,13 @@
+.bg-partida{
+    background-color: white;
+    height: 100%;
+}
+
+.mat-tab-group {
+    margin-bottom: 48px;
+}
+
+.bg-quadra {
+    background-color: #467E52;
+    border: 1px solid white;
+}
