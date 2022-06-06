@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,14 @@ import { ListaPartidaComponent } from './lista-partida/lista-partida.component';
 import { GolpesComponent } from './golpes/golpes.component';
 import { PartidaComponent } from './partida/partida.component';
 
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
+
+const materialModules = [
+  MatSelectModule
+]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +35,7 @@ import { PartidaComponent } from './partida/partida.component';
     CadastroPartidaComponent,
     ListaPartidaComponent,
     GolpesComponent,
-    PartidaComponent,
+    PartidaComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,11 @@ import { PartidaComponent } from './partida/partida.component';
     FontAwesomeModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatTabsModule,
     ToastrModule.forRoot({positionClass :'toast-bottom-right'}),
   ],
   providers: [],
