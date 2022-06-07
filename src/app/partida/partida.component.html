@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-center">
                         <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle-yellow p-2" (click)="goBack()"></fa-icon>
                     </div>
-                    <h1 class="text-center p-1 my-auto">Nome da partida</h1>
+                    <h1 class="text-center p-1 my-auto">{{partida.nome}}</h1>
                 </div>
 
                 <div class="central">
@@ -53,13 +53,19 @@
                         </div>
                     </div>
 
-                    <div class="quadra col-12">
+                    <div class="quadra col-12 position-relative">
 
                         <div *ngFor="let quadrante of quadrantes | slice:0:12" class="quadrante col-2 bg-quadra d-inline-block p-3">
-                            <div class="d-flex justify-content-center">
+                            <div class="d-flex justify-content-center" (click)="abrirModalJogada(quadrante)">
                                 <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
                             </div>
                         </div>
+
+                        <!-- <div class="quadrante col-2 bg-quadra d-inline-block p-3"> -->
+                            <div class="bt-rede position-absolute">
+                                <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
+                            </div>
+                        <!-- </div> -->
 
                     </div>
                 </div>

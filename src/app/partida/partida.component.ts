@@ -3,9 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faCircleUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
 import { Jogador } from '../Classes/Jogador';
+import {MatDialog} from '@angular/material/dialog';
+import { GolpesComponent } from '../golpes/golpes.component';
 
 @Component({
   selector: 'app-partida',
@@ -41,7 +44,7 @@ export class PartidaComponent implements OnInit {
     }
   ]
 
-  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute ) { }
+  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     
@@ -98,6 +101,15 @@ export class PartidaComponent implements OnInit {
       console.log(ret.quadrantes);
       this.quadrantes = ret.quadrantes;
     })
+  }
+
+  public abrirModalJogada(quadrante: any){
+
+    const dialogRef = this.dialog.open(GolpesComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   public filtraJogador(jogador: number){

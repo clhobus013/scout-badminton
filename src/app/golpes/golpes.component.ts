@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { faCheck, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Golpe } from '../Classes/Golpe';
+import { Jogada } from '../Classes/Jogada';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-golpes',
@@ -17,7 +19,7 @@ export class GolpesComponent implements OnInit {
 
   golpes: Golpe[] = [];
 
-  constructor(private http: HttpClient, private _location: Location) { }
+  constructor(private http: HttpClient, private _location: Location, @Inject(MAT_DIALOG_DATA) public quadrante: any) { }
 
   ngOnInit(): void {
     this.getGolpes();

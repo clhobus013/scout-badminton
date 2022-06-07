@@ -21,6 +21,7 @@ import { PartidaComponent } from './partida/partida.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const materialModules = [
   MatSelectModule
@@ -48,6 +49,7 @@ const materialModules = [
     MatSelectModule,
     MatButtonModule,
     MatTabsModule,
+    MatDialogModule,
     ToastrModule.forRoot({positionClass :'toast-bottom-right'}),
   ],
   providers: [],
