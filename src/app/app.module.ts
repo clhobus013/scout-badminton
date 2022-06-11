@@ -17,11 +17,14 @@ import { CadastroPartidaComponent } from './cadastro-partida/cadastro-partida.co
 import { ListaPartidaComponent } from './lista-partida/lista-partida.component';
 import { GolpesComponent } from './golpes/golpes.component';
 import { PartidaComponent } from './partida/partida.component';
+import { Global } from './common/global.component';
 
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule} from '@angular/material/button';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const materialModules = [
   MatSelectModule
@@ -50,9 +53,11 @@ const materialModules = [
     MatButtonModule,
     MatTabsModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({positionClass :'toast-bottom-right'}),
   ],
-  providers: [],
+  providers: [Global],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
