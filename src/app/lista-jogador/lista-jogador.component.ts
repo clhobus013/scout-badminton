@@ -20,6 +20,11 @@ export class ListaJogadorComponent implements OnInit {
   faUser = faUser;
   faTableTennis = faTableTennis;
 
+  carregando = true;
+
+  fimPag = 8;
+  inicioPag = 0;
+
   jogadores: Jogador[] = [];
 
   constructor(private http: HttpClient, private _location: Location, private router: Router) {
@@ -31,6 +36,8 @@ export class ListaJogadorComponent implements OnInit {
 
   public getJogadores(){
 
+    this.carregando = true;
+
     this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
     .subscribe(
     ret => {
@@ -41,9 +48,16 @@ export class ListaJogadorComponent implements OnInit {
       
       console.log(this.jogadores);
 
+      this.carregando = false;
+
       // Colocar item em ordem alfabetica
       
     })
+  }
+
+  onPageChange(event:any) {
+    this.inicioPag = event.pageIndex * event.pageSize;
+    this.fimPag = this.inicioPag + event.pageSize;
   }
 
   goBack() {    

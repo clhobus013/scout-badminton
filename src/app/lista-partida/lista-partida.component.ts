@@ -19,7 +19,13 @@ export class ListaPartidaComponent implements OnInit {
   faTableTennis = faTableTennis;
   faPlay = faPlay;
 
+  carregando = true;
+
+  fimPag = 8;
+  inicioPag = 0;
+
   partidas: Partida[] = [];
+  currentItemsToShow: Partida[] = [];
 
   constructor(private http: HttpClient, private _location: Location, private router: Router) {
   }
@@ -30,15 +36,21 @@ export class ListaPartidaComponent implements OnInit {
 
   public getPartidas(){
 
+    this.carregando = true;
+
     this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_partidas')
     .subscribe(
     ret => {
 
       ret.partidas_badminton.forEach((partida: Partida) => {
         this.partidas.push(partida);
+        this.currentItemsToShow.push(partida);
       });
       
       console.log(this.partidas);
+
+      this.carregando = false;
+      // tratar erro
       
     })
   }
@@ -49,6 +61,11 @@ export class ListaPartidaComponent implements OnInit {
 
     this.router.navigate(["partida", partida.id]);
 
+  }
+
+  onPageChange(event:any) {
+    this.inicioPag = event.pageIndex * event.pageSize;
+    this.fimPag = this.inicioPag + event.pageSize;
   }
 
   goBack() {    
