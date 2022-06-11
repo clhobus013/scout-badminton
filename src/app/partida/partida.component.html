@@ -14,14 +14,14 @@
 
                 <div class="central">
                     <div class="users col-12 d-flex ">
-                        <div *ngIf="partida.jogador_1" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_1.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
-                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_1)[0].nome}}</p>
+                            <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_1.nome}}</p>
                         </div>
 
-                        <div *ngIf="partida.jogador_2" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_2.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
-                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_2)[0].nome}}</p>
+                            <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_2.nome}}</p>
                         </div>
 
                         <div class="bg-placar col-4 p-0">
@@ -42,14 +42,14 @@
                         </div>
 
 
-                        <div *ngIf="partida.jogador_adversario_1" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_adversario_1.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
-                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_adversario_1)[0].nome}}</p>
+                            <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_adversario_1.nome}}</p>
                         </div>
 
-                        <div *ngIf="partida.jogador_adversario_2" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_adversario_2.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
-                            <p class="col-12 text-center" style="font-size:14px">{{filtraJogador(partida.jogador_adversario_2)[0].nome}}</p>
+                            <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_adversario_2.nome}}</p>
                         </div>
                     </div>
 

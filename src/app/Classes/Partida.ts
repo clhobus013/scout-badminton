@@ -4,10 +4,22 @@ export class Partida {
     data: string;
     tipo_jogo: string;
     modalidade: string;
-    jogador_1: number;
-    jogador_2: number;
-    jogador_adversario_1: number;
-    jogador_adversario_2: number;
+    jogador_1: {
+      id: number;
+      nome: string
+    };
+    jogador_2: {
+      id: number;
+      nome: string
+    };
+    jogador_adversario_1: {
+      id: number;
+      nome: string
+    };
+    jogador_adversario_2: {
+      id: number;
+      nome: string
+    };
 
     // constructor(partida_nome: string, data: string, tipo_jogo: string, modalidade: string, jogador_1: string, jogador_adversario_1: string){
 

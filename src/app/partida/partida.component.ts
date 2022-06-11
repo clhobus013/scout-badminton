@@ -6,8 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faCircleUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
-import { Jogador } from '../Classes/Jogador';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { GolpesComponent } from '../golpes/golpes.component';
 
 @Component({
@@ -23,7 +22,6 @@ export class PartidaComponent implements OnInit {
   faPlus = faPlus;
 
   partida: Partida;
-  jogadores: Jogador[] = [];
   quadrantes: any[] = [];
 
   sets: any[] = [
@@ -47,8 +45,7 @@ export class PartidaComponent implements OnInit {
   constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog ) { }
 
   ngOnInit(): void {
-    
-    this.getJogadores();
+  
     this.getQuadrantes();
 
     this.route.params.subscribe(params => {
@@ -83,16 +80,6 @@ export class PartidaComponent implements OnInit {
     })
   }
 
-  public getJogadores(){
-    this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
-    .subscribe(
-    ret => {
-      // TRATAR ERRO
-      console.log(ret.jogadores_badminton);
-      this.jogadores = ret.jogadores_badminton;
-    })
-  }
-
   public getQuadrantes(){
     this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_quadrantes')
     .subscribe(
@@ -110,10 +97,6 @@ export class PartidaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
-
-  public filtraJogador(jogador: number){
-    return this.jogadores.filter(item => item.id == jogador);
   }
 
   public selecionaSet(set: number){

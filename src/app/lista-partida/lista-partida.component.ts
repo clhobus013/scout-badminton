@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faCalendar, faUser, faTableTennis, faPlay } from '@fortawesome/free-solid-svg-icons';
-import { Jogador } from '../Classes/Jogador';
 import { Partida } from '../Classes/Partida';
 
 @Component({
@@ -21,13 +20,11 @@ export class ListaPartidaComponent implements OnInit {
   faPlay = faPlay;
 
   partidas: Partida[] = [];
-  jogadores: Jogador[] = [];
 
   constructor(private http: HttpClient, private _location: Location, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.getJogadores();
     this.getPartidas();
   }
 
@@ -38,29 +35,12 @@ export class ListaPartidaComponent implements OnInit {
     ret => {
 
       ret.partidas_badminton.forEach((partida: Partida) => {
-
         this.partidas.push(partida);
       });
       
       console.log(this.partidas);
       
     })
-  }
-
-  public getJogadores(){
-    this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
-    .subscribe(
-    ret => {
-      
-      ret.jogadores_badminton.forEach((jogador: Jogador) => {
-        this.jogadores.push(jogador);
-      });
-      
-    })
-  }
-
-  public getJogador(jogador: number){
-    return this.jogadores.filter(item => item.id == jogador);
   }
 
   public iniciarPartida(partida: Partida){
