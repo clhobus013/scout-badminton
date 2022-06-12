@@ -25,9 +25,16 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu';
 
 const materialModules = [
-  MatSelectModule
+  MatSelectModule,
+  MatButtonModule,
+  MatTabsModule,
+  MatDialogModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatMenuModule,
 ]
 
 @NgModule({
@@ -49,12 +56,7 @@ const materialModules = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatTabsModule,
-    MatDialogModule,
-    MatPaginatorModule,
-    MatProgressSpinnerModule,
+    [...materialModules],
     ToastrModule.forRoot({positionClass :'toast-bottom-right'}),
   ],
   providers: [Global],

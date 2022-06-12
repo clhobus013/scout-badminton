@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { faArrowLeft, faCheck, faCircleUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faCheck, faCircleUser, faPlus, faTableTennis } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
 import { Jogador } from '../Classes/Jogador';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,9 +19,11 @@ import { Jogada } from '../Classes/Jogada';
 export class PartidaComponent implements OnInit {
 
   faArrowLeft = faArrowLeft;
+  faArrowRight = faArrowRight;
   faCheck = faCheck;
   faCircleUser = faCircleUser;
   faPlus = faPlus;
+  faTableTennis = faTableTennis;
 
   partida: Partida;
   jogadores: Jogador[] = [];
@@ -152,7 +154,7 @@ export class PartidaComponent implements OnInit {
         }
   
         this.partida.sets[this.tabIndex] = ret.pontuacao_set;
-        this.toastr.success('Jogada Cadastrada com sucesso');
+        this.toastr.success('Jogada Cadastrada com sucesso', '', {timeOut: 900});
         // console.log(this.partida);
 
       }, 

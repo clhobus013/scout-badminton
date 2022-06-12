@@ -1,6 +1,6 @@
 <div class="bg-partida">
 
-    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="tabIndex" mat-align-tabs="start" (selectedTabChange)="selecionaSet($event.index+1);">
+    <mat-tab-group #matTab [(selectedIndex)]="tabIndex" mat-align-tabs="start" (selectedTabChange)="selecionaSet($event.index+1);">
         <mat-tab *ngFor="let set of sets" label="Set {{set.ordem_set}}">
 
             <div class="conteudo col-12 p-3">
@@ -63,11 +63,24 @@
                             </div>
                         </div>
 
-                        <!-- <div class="quadrante col-2 bg-quadra d-inline-block p-3"> -->
-                            <div class="bt-rede position-absolute">
-                                <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
-                            </div>
-                        <!-- </div> -->
+                        <div class="bt-rede position-absolute" (click)="abrirModalJogada(quadrantes[14])">
+                            <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
+                        </div>
+
+                        <button mat-icon-button [matMenuTriggerFor]="menu" class="bt-fora-quadra position-fixed" aria-label="botão fora da quadra">
+                            <fa-icon [icon]="faTableTennis" size="lg" class="btn circle-yellow rounded-circle p-2"></fa-icon>
+                        </button>
+
+                        <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="abrirModalJogada(quadrantes[13])">
+                            <fa-icon [icon]="faArrowLeft"></fa-icon>
+                            <span class="px-1">{{quadrantes[13].descricao}}</span>
+                        </button>
+                        <button mat-menu-item (click)="abrirModalJogada(quadrantes[14])" >
+                            <fa-icon [icon]="faArrowRight"></fa-icon>
+                            <span class="px-1">{{quadrantes[14].descricao}}</span>
+                        </button>
+                        </mat-menu>
 
                     </div>
                 </div>
