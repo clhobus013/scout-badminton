@@ -1,3 +1,5 @@
+import { Set } from "./Set";
+
 export class Partida {
     id: number;
     nome: string;
@@ -20,6 +22,7 @@ export class Partida {
       id: number;
       nome: string
     };
+    sets: Set[]
 
     // constructor(partida_nome: string, data: string, tipo_jogo: string, modalidade: string, jogador_1: string, jogador_adversario_1: string){
 

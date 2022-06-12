@@ -1,7 +1,7 @@
 <div class="bg-partida">
 
-    <mat-tab-group mat-align-tabs="start">
-        <mat-tab *ngFor="let set of sets" label="Set {{set.ordem}}" (click)="selecionaSet(set.id)">
+    <mat-tab-group animationDuration="0ms" [(selectedIndex)]="tabIndex" mat-align-tabs="start" (selectedTabChange)="selecionaSet($event.index+1);">
+        <mat-tab *ngFor="let set of sets" label="Set {{set.ordem_set}}">
 
             <div class="conteudo col-12 p-3">
 
@@ -24,18 +24,20 @@
                             <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_2.nome}}</p>
                         </div>
 
-                        <div class="bg-placar col-4 p-0">
+                        <div class="bg-placar col-3 p-0">
 
-                            <p class="text-center m-1">{{partida.nome}}</p>
+                            <h5 class="text-center m-1">{{partida.nome}}</h5>
 
-                            <div class="placar d-flex align-items-center justify-content-between rounded p-2" style="background-color:#467E52">
+                            <div class="placar d-flex align-items-center justify-content-around rounded p-2" style="background-color:#467E52">
 
                                 <div class="d-flex justify-content-center">
-                                    <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                                    <!-- <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon> -->
+                                    <h4 class="text-center text-light m-auto">{{partida.sets[tabIndex].acertos ? partida.sets[tabIndex].acertos : 0}}</h4>
                                 </div>
 
-                                <div class="d-flex justify-content-center">
-                                    <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <h4 class="text-center text-light m-auto">{{partida.sets[tabIndex].erros ? partida.sets[tabIndex].erros : 0}}</h4>
+                                    <!-- <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon> -->
                                 </div>
                             </div>
 

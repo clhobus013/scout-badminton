@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { faCheck, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Jogada } from '../Classes/Jogada';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Global } from '../common/global.component';
+import { Golpe } from '../Classes/Golpe';
 
 @Component({
   selector: 'app-golpes',
@@ -17,7 +18,7 @@ export class GolpesComponent implements OnInit {
   faXmark = faXmark;
   faArrowLeft = faArrowLeft;
 
-  constructor(private http: HttpClient, private _location: Location, @Inject(MAT_DIALOG_DATA) public quadrante: any, private global: Global) { }
+  constructor(private http: HttpClient, private _location: Location, @Inject(MAT_DIALOG_DATA) public quadrante: any, private global: Global, public dialogRef: MatDialogRef<GolpesComponent>) { }
 
   ngOnInit(): void {
     console.log(this.global.golpes);
@@ -27,7 +28,11 @@ export class GolpesComponent implements OnInit {
     return this.global.golpes.filter(item=> item.id != 1 && item.id != 12 )
   }
 
-  goBack() {    
-    this._location.back();
+  selecionaJogada(golpe: Golpe, acerto: boolean){
+    this.dialogRef.close({id: golpe.id, acerto: acerto});
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 }
