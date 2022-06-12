@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faCircleUser, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
 import { Jogador } from '../Classes/Jogador';
@@ -32,20 +31,20 @@ export class PartidaComponent implements OnInit {
 
   sets: any[] = [
     {
-      set_id: 0,
+      id_set: 0,
       ordem_set: 1
     },
     {
-      set_id: 1,
+      id_set: 1,
       ordem_set: 2
     },
     {
-      set_id: 2,
+      id_set: 2,
       ordem_set: 3
     }
   ]
 
-  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute, private router: Router, public dialog: MatDialog ) { }
+  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute, public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     
@@ -53,12 +52,8 @@ export class PartidaComponent implements OnInit {
     this.getQuadrantes();
 
     this.route.params.subscribe(params => {
-      console.log('The id of this route is: ', params[`id`]);
-      
       this.getPartida(params[`id`]);
-      
     });
-
     
   }
 
@@ -68,12 +63,19 @@ export class PartidaComponent implements OnInit {
     .subscribe(
     ret => {
 
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter a partida. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+
       this.partida = ret.partida_badminton;
-
       this.iniciaSet();
-
-      console.log(this.partida);
       
+    },
+    erro => {
+      this.toastr.error('Ocorreu um erro ao obter a partida. Tente novamente mais tarde');
+      console.log(erro);
     })
   }
 
@@ -81,9 +83,19 @@ export class PartidaComponent implements OnInit {
     this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_jogadores')
     .subscribe(
     ret => {
-      // TRATAR ERRO
-      console.log(ret.jogadores_badminton);
+
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter os jogadores. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+      
       this.jogadores = ret.jogadores_badminton;
+
+    },
+    erro => {
+      this.toastr.error('Ocorreu um erro ao obter os jogadores. Tente novamente mais tarde');
+      console.log(erro);
     })
   }
 
@@ -91,9 +103,19 @@ export class PartidaComponent implements OnInit {
     this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_quadrantes')
     .subscribe(
     ret => {
-      // TRATAR ERRO
-      console.log(ret.quadrantes);
+      
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter os quadrantes. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+      
       this.quadrantes = ret.quadrantes;
+
+    },
+    erro => {
+      this.toastr.error('Ocorreu um erro ao obter os quadrantes. Tente novamente mais tarde');
+      console.log(erro);
     })
   }
 
@@ -102,47 +124,46 @@ export class PartidaComponent implements OnInit {
     this.http.post('https://scoutbadmintonapi.herokuapp.com/post_set', {}, {params: {id_partida: this.partida.id, ordem_set: ordem}})
     .subscribe(
     (ret:any) => {
-
+      
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter o set. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+      
       this.getPartida(this.partida.id);
-
-      // console.log(ret);
-      // this.sets[ordem-1].set_id = ret.set_criado.set_id;
-
-      // console.log(this.sets);
-      // console.log(this.partida.sets);
-
-      // this.partida.sets.push({acertos: 0, erros: 0, id_set:ret.set_criado.set_id, ordem_set: ret.set_criado.ordem_set, resultado_set: 'empate', status: 'continuar'});
-
-      // this.sets[ordem-1] = this.partida.sets[ordem-1];
-
-      console.log(this.sets);
-      console.log(this.partida.sets);
       
     },
     erro =>{
-      //tratar erro p/ usuario
+      this.toastr.error('Ocorreu um erro ao salvar o set. Tente novamente mais tarde');
       console.log("Erro ao iniciar set", erro);
     })
   }
 
   public postJogada(jogada: Jogada){
-    console.log(jogada);
-    console.log(JSON.stringify(jogada));
-    this.http.post('https://scoutbadmintonapi.herokuapp.com/post_jogada', JSON.stringify(jogada), {})
+    this.http.post('https://scoutbadmintonapi.herokuapp.com/post_jogada', jogada, {})
     .subscribe(
-      ret=>{
-        console.log(ret);
+      (ret: any)=>{
+
+        if (ret.hasOwnProperty('erro')){
+          this.toastr.error(ret.erro, 'Ocorreu um erro ao salvar jogada. Tente novamente mais tarde');
+          console.log(ret.erro);
+          return;
+        }
+  
+        this.partida.sets[this.tabIndex] = ret.pontuacao_set;
+        this.toastr.success('Jogada Cadastrada com sucesso');
+        // console.log(this.partida);
+
       }, 
       erro =>{
-        //tratar mensagem usuario;
-        console.log("Erro ao salvar jogada ");
+        this.toastr.error('Ocorreu um erro ao salvar jogada. Tente novamente mais tarde');
         console.log(erro);
       }
     )
   }
 
   public iniciaSet(){
-    console.log("Inicia Set");
     
     if (this.partida.sets.length == 0){
 
@@ -158,10 +179,7 @@ export class PartidaComponent implements OnInit {
           this.tabIndex = index;
           // this.selecionaSet(set.ordem_set);
         }
-        // else nao ha sets em aberto
       })
-
-      console.log(this.sets);
     }
   }
 
@@ -174,7 +192,7 @@ export class PartidaComponent implements OnInit {
       if (result){
         let jogada = new Jogada();
         jogada = {
-          set: this.sets[this.tabIndex].set_id,
+          set: this.sets[this.tabIndex].id_set,
           golpe: result.id,
           quadrante: quadrante.id,
           tipoerro: 0,

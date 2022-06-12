@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
-import { Golpe } from "../Classes/Golpe";
 import { Injectable } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Golpe } from "../Classes/Golpe";
 
 @Injectable({
     providedIn: 'root',
@@ -11,7 +12,7 @@ export class Global {
   golpes: Golpe[] = [];
   erroSaque: Golpe[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastr: ToastrService) { }
 
   public getGolpes(){
 
@@ -19,6 +20,12 @@ export class Global {
     .subscribe(
     ret => {
 
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter os golpes. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+        
       ret.golpes_badminton.golpes.forEach((golpe: Golpe) => {
         this.golpes.push(golpe);
       });
@@ -27,8 +34,12 @@ export class Global {
         this.erroSaque.push(erro);
       })
 
-      console.log(this.erroSaque);
+      // console.log(this.erroSaque);
       
+    },
+    erro => {
+      this.toastr.error('Ocorreu um erro ao obter os golpes. Tente novamente mais tarde');
+      console.log(erro);
     })
   }
 

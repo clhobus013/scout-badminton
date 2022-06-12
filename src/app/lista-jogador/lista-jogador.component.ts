@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faEnvelope, faCalendar, faMobileScreen, faUser, faTableTennis } from '@fortawesome/free-solid-svg-icons';
 import { Jogador } from '../Classes/Jogador';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-jogador',
@@ -27,7 +28,7 @@ export class ListaJogadorComponent implements OnInit {
 
   jogadores: Jogador[] = [];
 
-  constructor(private http: HttpClient, private _location: Location, private router: Router) {
+  constructor(private http: HttpClient, private _location: Location, private router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -42,16 +43,26 @@ export class ListaJogadorComponent implements OnInit {
     .subscribe(
     ret => {
 
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter os jogadores. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+        
       ret.jogadores_badminton.forEach((jogador: Jogador) => {
         this.jogadores.push(jogador);
       });
       
-      console.log(this.jogadores);
+      // console.log(this.jogadores);
 
       this.carregando = false;
 
       // Colocar item em ordem alfabetica
       
+    },
+    erro => {
+      this.toastr.error('Ocorreu um erro ao obter os jogadores. Tente novamente mais tarde');
+      console.log(erro);
     })
   }
 

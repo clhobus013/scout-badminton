@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faCalendar, faUser, faTableTennis, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-lista-partida',
@@ -27,7 +28,7 @@ export class ListaPartidaComponent implements OnInit {
   partidas: Partida[] = [];
   currentItemsToShow: Partida[] = [];
 
-  constructor(private http: HttpClient, private _location: Location, private router: Router) {
+  constructor(private http: HttpClient, private _location: Location, private router: Router, private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -42,6 +43,12 @@ export class ListaPartidaComponent implements OnInit {
     .subscribe(
     ret => {
 
+      if (ret.hasOwnProperty('erro')){
+        this.toastr.error(ret.erro, 'Ocorreu um erro ao obter as partidas. Tente novamente mais tarde');
+        console.log(ret.erro);
+        return;
+      }
+        
       ret.partidas_badminton.forEach((partida: Partida) => {
         this.partidas.push(partida);
         this.currentItemsToShow.push(partida);
@@ -50,17 +57,18 @@ export class ListaPartidaComponent implements OnInit {
       console.log(this.partidas);
 
       this.carregando = false;
-      // tratar erro
       
+    },
+    erro => {
+      this.toastr.error('Ocorreu um erro ao obter as partidas. Tente novamente mais tarde');
+      console.log(erro);
     })
   }
 
   public iniciarPartida(partida: Partida){
+    
     console.log(partida);
-    console.log("iniciou!");
-
     this.router.navigate(["partida", partida.id]);
-
   }
 
   onPageChange(event:any) {
