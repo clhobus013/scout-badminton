@@ -2,6 +2,7 @@ export class Jogada {
     set: number;
     golpe: number;
     quadrante: number;
+    tipoerro: number;
     acerto: boolean;
 
     // constructor(set: number, golpe: number, quadrante: number, acerto: booblean){
