@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Global } from '../common/global.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faCalendar, faUser, faTableTennis, faPlay } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +29,7 @@ export class ListaPartidaComponent implements OnInit {
   partidas: Partida[] = [];
   currentItemsToShow: Partida[] = [];
 
-  constructor(private http: HttpClient, private _location: Location, private router: Router, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private _location: Location, private router: Router, private toastr: ToastrService, private global: Global) {
   }
 
   ngOnInit(): void {
@@ -50,12 +51,14 @@ export class ListaPartidaComponent implements OnInit {
       }
         
       ret.partidas_badminton.forEach((partida: Partida) => {
+
+        partida.data = this.global.formataData(partida.data);
         this.partidas.push(partida);
         this.currentItemsToShow.push(partida);
+
       });
       
       console.log(this.partidas);
-
       this.carregando = false;
       
     },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Global } from '../common/global.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { faArrowLeft, faCheck, faEnvelope, faCalendar, faMobileScreen, faUser, faTableTennis } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +29,7 @@ export class ListaJogadorComponent implements OnInit {
 
   jogadores: Jogador[] = [];
 
-  constructor(private http: HttpClient, private _location: Location, private router: Router, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private _location: Location, private router: Router, private toastr: ToastrService, private global: Global) {
   }
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class ListaJogadorComponent implements OnInit {
       }
         
       ret.jogadores_badminton.forEach((jogador: Jogador) => {
+        jogador.data_nascimento = this.global.formataData(jogador.data_nascimento); 
         this.jogadores.push(jogador);
       });
       

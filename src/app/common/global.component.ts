@@ -43,4 +43,12 @@ export class Global {
     })
   }
 
+  public formataData(data: string): string{
+
+    let vData: string[] = data.split("-");
+    let novaData = new Date(parseInt(vData[2]), parseInt(vData[1]), parseInt(vData[0]));
+
+    return novaData.toLocaleDateString();
+  }
+
 }
