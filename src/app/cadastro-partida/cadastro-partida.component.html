@@ -57,7 +57,9 @@
         </div>
 
         <div class="input-group-append p-0">
-            <div class="col-12 d-flex justify-content-end">
+            <div class="col-12 d-flex justify-content-end" style="z-index: 100;">
+                <fa-icon [icon]="faPlay" size="lg" style="right: 3.7em;" class="btn fab rounded-circle circle p-2" (click)="adicionaPartida(true)"></fa-icon>
+
                 <fa-icon [icon]="faCheck" size="lg" class="btn fab rounded-circle circle p-2" (click)="adicionaPartida()"></fa-icon>
             </div>
         </div>

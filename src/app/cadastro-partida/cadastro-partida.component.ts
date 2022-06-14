@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
-import { faArrowLeft, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { faArrowLeft, faCheck, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Jogador } from '../Classes/Jogador';
 import { Partida } from '../Classes/Partida';
@@ -15,15 +16,16 @@ export class CadastroPartidaComponent implements OnInit {
 
   faArrowLeft = faArrowLeft;
   faCheck     = faCheck;
+  faPlay      = faPlay;
 
   partida: Partida;
   partidas: Partida[] = [];
   jogadores: Jogador[] = [];
 
   tipos = [ 'Simples', 'Dupla' ];
-  modalidades = [ 'Masculina', 'Feminina', 'Misto' ];
+  modalidades = [ 'Masculino', 'Feminino', 'Misto' ];
 
-  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -50,7 +52,7 @@ export class CadastroPartidaComponent implements OnInit {
     })
   }
 
-  public adicionaPartida(){
+  public adicionaPartida(iniciar: boolean = false){
 
     if (!this.validaPartida()){
       return false;
@@ -66,8 +68,15 @@ export class CadastroPartidaComponent implements OnInit {
           return;
         }
         console.log(resultado);
-        this.toastr.success('Partida cadastrada com sucesso');
+        
         this.partida = new Partida();
+        this.partida = resultado.partida;
+
+        if (iniciar){
+          this.router.navigate(["partida", this.partida.id]);
+        } else {
+          this.toastr.success('Partida cadastrada com sucesso');
+        }
       },
       erro => {
         this.toastr.error(erro, 'Ocorreu um erro ao salvar a partida. Tente novamente mais tarde');
