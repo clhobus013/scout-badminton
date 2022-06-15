@@ -1,74 +1,82 @@
 <div class="container-fluid menu p-5">
 
     <div class="row gy-3">
-      
-        <div class="title d-flex align-items-center p-0">
-            <div class="d-flex justify-content-center">
-                <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle p-2" (click)="goBack()"></fa-icon>
+        
+        <div class="col-12 col-md-8 col-xl-6 m-auto">
+
+            <div class="title d-flex align-items-center p-0">
+                <div class="d-flex justify-content-center">
+                    <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle p-2" (click)="goBack()"></fa-icon>
+                </div>
+                <h1 class="col-10 text-center p-1 m-auto">Cadastrar partida</h1>
             </div>
-            <h1 class="col-10 text-center p-1">Cadastrar partida</h1>
-        </div>
 
-        <div class="col-12 input-group mb-3 p-0">
-            <label for="nome-partida" class="col-12 py-1">Nome da partida</label>
-            <input [(ngModel)]="partida.nome" type="text" class="form-control rounded" placeholder="Nome da partida" aria-label="Nome da partida" aria-describedby="nome-partida">
-
-            <label for="dt-partida" class="col-12 py-1">Data da partida</label>
-            <input [(ngModel)]="partida.data" type="date" class="form-control rounded" placeholder="dd-mm-aaaa" aria-label="dd-mm-aaaa" aria-describedby="dt-partida">
-
-            <label for="tipo-partida" class="col-12 py-1">Tipo</label>
-            <select [(ngModel)]="partida.tipo_jogo" class="col-12 form-select" aria-label="select-tipo-partida">
-                <option selected [value]="undefined">Selecione um tipo de partida</option>
-                <option *ngFor="let tipo of tipos; let i=index" [value]="tipo.toLowerCase()">{{tipo}}</option>
-            </select>
-
-            <label for="modalidade" class="col-12 py-1">Modalidade</label>
-            <select [(ngModel)]="partida.modalidade" class="col-12 form-select" aria-label="select-modalidade">
-                <option selected value="undefined">Selecione uma modalidade</option>
-                <option *ngFor="let modalidade of modalidades; let i=index" [value]="modalidade.toLowerCase()">{{modalidade}}</option>
-            </select>
-
-            <label for="jogador-1" class="col-12 py-1">Jogador 1</label>
-            <select [(ngModel)]="partida.jogador_1" class="col-12 form-select" aria-label="select-jogador-1">
-                <option selected value="undefined">Selecione um jogador</option>
-                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
-            </select>
-
-            <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-2" class="col-12 py-1">Jogador 2</label>
-            <select [(ngModel)]="partida.jogador_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="select-jogador-2">
-                <option selected value="undefined">Selecione um jogador</option>
-                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
-            </select>
-
-            <h5 class="col-12 text-center m-auto p-2"><b>Jogadore(s) Adverário(s)</b></h5>
-
-            <label for="jogador-adv-1" class="col-12 py-1">Jogador Adverário 1</label>
-            <select [(ngModel)]="partida.jogador_adversario_1" class="col-12 form-select" aria-label="select-jogador-adv-1">
-                <option selected value="undefined">Selecione um jogador Adversário</option>
-                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
-            </select>
-
-            <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-adv-2" class="col-12 py-1">Jogador Adversário 2</label>
-            <select [(ngModel)]="partida.jogador_adversario_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="select-adv-jogador-2">
-                <option selected value="undefined">Selecione um jogador Adversário</option>
-                <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
-            </select>
-
-        </div>
-
-        <div class="input-group-append p-0">
-            <div class="col-12 d-flex justify-content-end" style="z-index: 100;">
-                <fa-icon [icon]="faPlay" size="lg" style="right: 3.7em;" class="btn fab rounded-circle circle p-2" (click)="adicionaPartida(true)"></fa-icon>
-
-                <fa-icon [icon]="faCheck" size="lg" class="btn fab rounded-circle circle p-2" (click)="adicionaPartida()"></fa-icon>
+            <div class="col-12 input-group mb-3 pt-2 p-0">
+                <label for="nome-partida" class="col-12 py-1">Nome da partida</label>
+                <input [(ngModel)]="partida.nome" type="text" class="form-control rounded" placeholder="Nome da partida" aria-label="Nome da partida" aria-describedby="Campo data da partida">
+    
+                <div class="col-12">
+                    <label for="dt-partida" class="col-12 py-1">Data da partida</label>
+                    <input [(ngModel)]="partida.data" type="date" class="form-control rounded" aria-label="Data da partida" aria-describedby="Campo data da partida">
+                </div>
+    
+                <div class="col-6">
+                    <div class="col-12 pe-2">
+                        <label for="tipo-partida" class="col-12 py-1">Tipo</label>
+                        <select [(ngModel)]="partida.tipo_jogo" class="col-12 form-select px-2" aria-label="Seletor tipo da partida">
+                            <option selected [value]="undefined">Tipo de partida</option>
+                            <option *ngFor="let tipo of tipos; let i=index" [value]="tipo.toLowerCase()">{{tipo}}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <div class="col-6">
+                    <div class="col-12 ps-2">
+                        <label for="modalidade" class="col-12 py-1">Modalidade</label>
+                        <select [(ngModel)]="partida.modalidade" class="col-12 form-select" aria-label="Seletor modalidade">
+                            <option selected value="undefined">Modalidade</option>
+                            <option *ngFor="let modalidade of modalidades; let i=index" [value]="modalidade.toLowerCase()">{{modalidade}}</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <label for="jogador-1" class="col-12 py-1">Jogador 1</label>
+                <select [(ngModel)]="partida.jogador_1" class="col-12 form-select" aria-label="Seletor jogador 1">
+                    <option selected value="undefined">Selecione um jogador</option>
+                    <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
+                </select>
+    
+                <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-2" class="col-12 py-1">Jogador 2</label>
+                <select [(ngModel)]="partida.jogador_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="Seletor jogador 2">
+                    <option selected value="0">Selecione um jogador</option>
+                    <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
+                </select>
+    
+                <h5 class="col-12 text-center m-auto p-2"><b>Jogadore(s) Adverário(s)</b></h5>
+    
+                <label for="jogador-adv-1" class="col-12 py-1">Jogador Adverário 1</label>
+                <select [(ngModel)]="partida.jogador_adversario_1" class="col-12 form-select" aria-label="Seletor jogador adversario 1">
+                    <option selected value="undefined">Selecione um jogador Adversário</option>
+                    <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
+                </select>
+    
+                <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-adv-2" class="col-12 py-1">Jogador Adversário 2</label>
+                <select [(ngModel)]="partida.jogador_adversario_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="Seletor adversario 2">
+                    <option selected value="0">Selecione um jogador Adversário</option>
+                    <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
+                </select>
+    
             </div>
+
+            <div class="d-flex flex-row-reverse align-items-end p-0 mb-2">
+                <div class="d-flex justify-content-end">
+                    <button class="btn rounded-circle circle p-2 mx-2"><fa-icon [icon]="faPlay" size="lg" class="px-1 m-auto" (click)="adicionaPartida(true)"></fa-icon></button>
+                    <button class="btn rounded-circle circle p-1"><fa-icon [icon]="faCheck" size="lg" class="px-2 m-auto" (click)="adicionaPartida()"></fa-icon></button>
+                </div>
+            </div>
+
         </div>
   
     </div>
   
 </div>
-
-<!-- 
-    Ajustar botão concluido.
-    Ajustar col-md-6 nos inputs.
- -->
