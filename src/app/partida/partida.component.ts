@@ -187,7 +187,7 @@ export class PartidaComponent implements OnInit {
 
   public abrirModalJogada(quadrante: any){
 
-    const dialogRef = this.dialog.open(GolpesComponent);
+    const dialogRef = this.dialog.open(GolpesComponent, {data:quadrante});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

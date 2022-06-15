@@ -1,6 +1,10 @@
 
-<div class="bg-golpes col-12 d-flex flex-wrap p-2" style="position: relative;">
-    <div *ngFor="let golpe of filtraGolpe()" class="col-5 d-inline-block m-auto pb-2">
+<div class="bg-golpes col-12 d-flex flex-wrap p-1" style="position: relative;">
+    <h4 class="col-12 text-center">{{quadrante.descricao + " - " + quadrante.lado | titlecase}}</h4>
+    <div class="d-flex justify-content-center" style="position:absolute; top: 0.5em; right: 0.7em;">
+        <fa-icon [icon]="faXmark" size="lg" class="btn rounded-circle circle p-2" (click)="close()"></fa-icon>
+    </div>
+    <div *ngFor="let golpe of filtraGolpe(null)" class="col-5 d-inline-block m-auto pb-1">
         <h6 class="text-center m-0">{{golpe.descricao}}</h6>
         <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-success btn-sm col-4 mx-2" (click)="selecionaJogada(golpe, true)">
@@ -11,8 +15,26 @@
             </button>
         </div>
     </div>
-    <div class="d-flex justify-content-center" style="position:absolute; top: 0.7em; right: 0.7em;">
-        <fa-icon [icon]="faXmark" size="lg" class="btn rounded-circle circle p-2" (click)="close()"></fa-icon>
+
+    <!-- SAQUE -->
+    <!-- Add separado para ficarm em baixo e alterar o botao de erro -->
+    <div *ngFor="let golpe of filtraGolpe(1)" class="col-5 d-inline-block m-auto pb-2">
+        <h6 class="text-center m-0">{{golpe.descricao}}</h6>
+        <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success btn-sm col-4 mx-2" (click)="selecionaJogada(golpe, true)">
+                <fa-icon [icon]="faCheck" size="lg"></fa-icon> Acerto
+            </button>
+
+            <button mat-raised-button [matMenuTriggerFor]="menu" class="btn btn-danger btn-sm col-4 mx-2" aria-label="Example icon-button with a menu">
+                <fa-icon [icon]="faPlus" size="lg"></fa-icon> Erros 
+            </button>
+            <mat-menu #menu="matMenu">
+            <button *ngFor="let erro of erros" mat-menu-item>
+                <span>{{erro.descricao}}</span>
+            </button>
+            </mat-menu>
+
+        </div>
     </div>
 </div>
 

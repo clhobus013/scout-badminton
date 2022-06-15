@@ -1,8 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Location } from '@angular/common';
-import { faCheck, faXmark, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { Jogada } from '../Classes/Jogada';
+import { faCheck, faXmark, faArrowLeft, faAngleDown, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Global } from '../common/global.component';
 import { Golpe } from '../Classes/Golpe';
@@ -14,18 +11,25 @@ import { Golpe } from '../Classes/Golpe';
 })
 export class GolpesComponent implements OnInit {
 
+  faPlus = faPlus;
   faCheck = faCheck;
   faXmark = faXmark;
   faArrowLeft = faArrowLeft;
+  faAngleDown = faAngleDown;
 
-  constructor(private http: HttpClient, private _location: Location, @Inject(MAT_DIALOG_DATA) public quadrante: any, private global: Global, public dialogRef: MatDialogRef<GolpesComponent>) { }
+  erros: Golpe[] = [];
+
+  constructor(@Inject(MAT_DIALOG_DATA) public quadrante: any, private global: Global, public dialogRef: MatDialogRef<GolpesComponent>) { }
 
   ngOnInit(): void {
+
+    this.erros = this.global.erroSaque;
+    console.log(this.quadrante);
     console.log(this.global.golpes);
   }
 
-  filtraGolpe() {
-    return this.global.golpes.filter(item=> item.id != 1 && item.id != 12 )
+  filtraGolpe(id: number|null) {
+    return !id ? this.global.golpes.filter(item=> item.id != 1 ) : this.global.golpes.filter(item=> item.id == id )
   }
 
   selecionaJogada(golpe: Golpe, acerto: boolean){

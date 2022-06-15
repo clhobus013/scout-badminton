@@ -13,13 +13,13 @@
                 </div>
 
                 <div class="central">
-                    <div class="users col-12 d-flex ">
-                        <div *ngIf="partida.jogador_1.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
+                    <div class="users col-12 d-flex">
+                        <div *ngIf="partida.jogador_1.nome" class="jogador col-2 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
                             <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_1.nome}}</p>
                         </div>
 
-                        <div *ngIf="partida.jogador_2.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_2.nome" class="jogador col-2 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
                             <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_2.nome}}</p>
                         </div>
@@ -44,12 +44,12 @@
                         </div>
 
 
-                        <div *ngIf="partida.jogador_adversario_1.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_adversario_1.nome" class="jogador col-2 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
                             <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_adversario_1.nome}}</p>
                         </div>
 
-                        <div *ngIf="partida.jogador_adversario_2.nome" class="jogador col-3 d-flex flex-wrap mx-auto">
+                        <div *ngIf="partida.jogador_adversario_2.nome" class="jogador col-2 d-flex flex-wrap mx-auto">
                             <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:40px"></fa-icon>
                             <p class="col-12 text-center" style="font-size:14px">{{partida.jogador_adversario_2.nome}}</p>
                         </div>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
 
-                        <div class="bt-rede position-absolute" (click)="abrirModalJogada(quadrantes[14])">
+                        <div class="bt-rede position-absolute" (click)="abrirModalJogada(quadrantes[12])">
                             <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
                         </div>
 
