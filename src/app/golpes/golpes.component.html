@@ -4,13 +4,13 @@
     <div class="d-flex justify-content-center" style="position:absolute; top: 0.5em; right: 0.7em;">
         <fa-icon [icon]="faXmark" size="lg" class="btn rounded-circle circle p-2" (click)="close()"></fa-icon>
     </div>
-    <div *ngFor="let golpe of filtraGolpe(null)" class="col-5 d-inline-block m-auto pb-1">
-        <h6 class="text-center m-0">{{golpe.descricao}}</h6>
-        <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-success btn-sm col-4 mx-2" (click)="selecionaJogada(golpe, true)">
+    <div *ngFor="let golpe of filtraGolpe(null)" class="col-4 d-inline-block m-auto pb-2">
+        <h5 class="text-center m-0">{{golpe.descricao}}</h5>
+        <div class="d-flex justify-content-center px-2">
+            <button type="button" class="btn btn-success btn-sm col-5 mx-2" (click)="selecionaJogada(golpe, true)">
                 <fa-icon [icon]="faCheck" size="lg"></fa-icon> Acerto
             </button>
-            <button type="button" class="btn btn-danger btn-sm col-4 mx-2" (click)="selecionaJogada(golpe, false)">
+            <button type="button" class="btn btn-danger btn-sm col-5 mx-2" (click)="selecionaJogada(golpe, false)">
                 <fa-icon [icon]="faXmark" size="lg"></fa-icon> Erro
             </button>
         </div>
@@ -18,14 +18,14 @@
 
     <!-- SAQUE -->
     <!-- Add separado para ficarm em baixo e alterar o botao de erro -->
-    <div *ngFor="let golpe of filtraGolpe(1)" class="col-5 d-inline-block m-auto pb-2">
+    <div *ngFor="let golpe of filtraGolpe(1)" class="col-4 d-inline-block m-auto pb-2">
         <h6 class="text-center m-0">{{golpe.descricao}}</h6>
-        <div class="d-flex justify-content-center">
-            <button type="button" class="btn btn-success btn-sm col-4 mx-2" (click)="selecionaJogada(golpe, true)">
+        <div class="d-flex justify-content-center px-2">
+            <button type="button" class="btn btn-success btn-sm col-5 mx-2" (click)="selecionaJogada(golpe, true)">
                 <fa-icon [icon]="faCheck" size="lg"></fa-icon> Acerto
             </button>
 
-            <button mat-raised-button [matMenuTriggerFor]="menu" class="btn btn-danger btn-sm col-4 mx-2" aria-label="Example icon-button with a menu">
+            <button mat-raised-button [matMenuTriggerFor]="menu" class="btn btn-danger btn-sm col-5 mx-2" aria-label="botão erros de saque">
                 <fa-icon [icon]="faPlus" size="lg"></fa-icon> Erros 
             </button>
             <mat-menu #menu="matMenu">
