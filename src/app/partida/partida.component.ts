@@ -25,6 +25,8 @@ export class PartidaComponent implements OnInit {
   faPlus = faPlus;
   faTableTennis = faTableTennis;
 
+  carregando = true;
+
   partida: Partida;
   jogadores: Jogador[] = [];
   quadrantes: any[] = [];
@@ -61,6 +63,8 @@ export class PartidaComponent implements OnInit {
 
   public getPartida(idPartida: number){
 
+    this.carregando = true;
+
     this.http.get<any>('https://scoutbadmintonapi.herokuapp.com/get_partida', {params:{id_partida: idPartida}})
     .subscribe(
     ret => {
@@ -68,15 +72,18 @@ export class PartidaComponent implements OnInit {
       if (ret.hasOwnProperty('erro')){
         this.toastr.error(ret.erro, 'Ocorreu um erro ao obter a partida. Tente novamente mais tarde');
         console.log(ret.erro);
+        this.carregando = false;
         return;
       }
 
       this.partida = ret.partida_badminton;
+      this.carregando = false;
       this.iniciaSet();
       
     },
     erro => {
       this.toastr.error('Ocorreu um erro ao obter a partida. Tente novamente mais tarde');
+      this.carregando = false;
       console.log(erro);
     })
   }
@@ -179,7 +186,6 @@ export class PartidaComponent implements OnInit {
 
         if (set.status == "continuar"){
           this.tabIndex = index;
-          // this.selecionaSet(set.ordem_set);
         }
       })
     }

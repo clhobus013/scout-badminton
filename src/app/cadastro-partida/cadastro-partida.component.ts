@@ -70,10 +70,9 @@ export class CadastroPartidaComponent implements OnInit {
         console.log(resultado);
         
         this.partida = new Partida();
-        this.partida = resultado.partida;
-
+        
         if (iniciar){
-          this.router.navigate(["partida", this.partida.id]);
+          this.router.navigate(["partida", resultado.partida.partida_id]);
         } else {
           this.toastr.success('Partida cadastrada com sucesso');
         }
@@ -148,10 +147,7 @@ export class CadastroPartidaComponent implements OnInit {
 
     }
 
-    console.log(this.partida);
-
     return true;
-
   }
 
   goBack() {    

@@ -48,7 +48,7 @@
     
                 <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-2" class="col-12 py-1">Jogador 2</label>
                 <select [(ngModel)]="partida.jogador_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="Seletor jogador 2">
-                    <option selected value="0">Selecione um jogador</option>
+                    <option selected value="undefined">Selecione um jogador</option>
                     <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
                 </select>
     
@@ -62,7 +62,7 @@
     
                 <label *ngIf="partida.tipo_jogo == 'dupla'" for="jogador-adv-2" class="col-12 py-1">Jogador Adversário 2</label>
                 <select [(ngModel)]="partida.jogador_adversario_2" *ngIf="partida.tipo_jogo == 'dupla'" class="col-12 form-select" aria-label="Seletor adversario 2">
-                    <option selected value="0">Selecione um jogador Adversário</option>
+                    <option selected value="undefined">Selecione um jogador Adversário</option>
                     <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
                 </select>
     

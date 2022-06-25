@@ -1,6 +1,6 @@
 .bg-partida{
     background-color: white;
-    height: 100%;
+    height: 100vh;
 }
 
 .mat-tab-group {
@@ -21,4 +21,10 @@
 .bt-fora-quadra {
     top: 4em;
     right: 1em;
+}
+
+.center {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
