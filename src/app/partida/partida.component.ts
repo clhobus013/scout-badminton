@@ -203,7 +203,7 @@ export class PartidaComponent implements OnInit {
           set: this.sets[this.tabIndex].id_set,
           golpe: result.id,
           quadrante: quadrante.id,
-          tipoerro: 0,
+          tipoerro: result.tipoErro.id_erro ? result.tipoErro.id_erro: 0,
           acerto: result.acerto
         }
 

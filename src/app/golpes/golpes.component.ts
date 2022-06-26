@@ -32,8 +32,8 @@ export class GolpesComponent implements OnInit {
     return !id ? this.global.golpes.filter(item=> item.id != 1 ) : this.global.golpes.filter(item=> item.id == id )
   }
 
-  selecionaJogada(golpe: Golpe, acerto: boolean){
-    this.dialogRef.close({id: golpe.id, acerto: acerto});
+  selecionaJogada(golpe: Golpe, acerto: boolean, tipoErro: Golpe = new Golpe){
+    this.dialogRef.close({id: golpe.id, acerto: acerto, tipoErro: tipoErro});
   }
 
   close() {

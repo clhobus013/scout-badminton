@@ -33,7 +33,7 @@
                 <fa-icon [icon]="faPlus" size="lg"></fa-icon> Erros 
             </button>
             <mat-menu #menu="matMenu">
-            <button *ngFor="let erro of erros" mat-menu-item>
+            <button *ngFor="let erro of erros" mat-menu-item (click)="selecionaJogada(golpe, false, erro)">
                 <span>{{erro.descricao}}</span>
             </button>
             </mat-menu>
