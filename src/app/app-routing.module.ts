@@ -7,6 +7,7 @@ import { ListaJogadorComponent } from './lista-jogador/lista-jogador.component';
 import { ListaPartidaComponent } from './lista-partida/lista-partida.component';
 import { GolpesComponent } from './golpes/golpes.component';
 import { PartidaComponent } from './partida/partida.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'lista-jogador', component: ListaJogadorComponent },
   { path: 'lista-partida', component: ListaPartidaComponent },
   { path: 'golpes', component: GolpesComponent },
-  { path: 'partida/:id', component: PartidaComponent }
+  { path: 'partida/:id', component: PartidaComponent },
+  { path: 'relatorio/:id', component: RelatorioComponent }
 ];
 
 @NgModule({

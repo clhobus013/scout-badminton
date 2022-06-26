@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Global } from '../common/global.component';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { faArrowLeft, faCheck, faCalendar, faUser, faTableTennis, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faCheck, faCalendar, faUser, faTableTennis, faPlay, faFileLines } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,6 +20,7 @@ export class ListaPartidaComponent implements OnInit {
   faUser      = faUser;
   faTableTennis = faTableTennis;
   faPlay = faPlay;
+  faFileLines = faFileLines;
 
   carregando = true;
 
@@ -66,6 +67,12 @@ export class ListaPartidaComponent implements OnInit {
       this.toastr.error('Ocorreu um erro ao obter as partidas. Tente novamente mais tarde');
       console.log(erro);
     })
+  }
+
+  public gerarRelatorio(partida: Partida){
+    
+    console.log(partida);
+    this.router.navigate(["relatorio", partida.id]);
   }
 
   public iniciarPartida(partida: Partida){

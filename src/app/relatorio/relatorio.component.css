@@ -1,0 +1,10 @@
+.bg-relatorio{
+    background-color: white;
+    height: 100vh;
+}
+
+.center {
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}

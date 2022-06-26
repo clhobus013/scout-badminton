@@ -30,19 +30,24 @@
 
                 <div class="col-12 px-2" style="position: relative;">
                     <div>
-                        <p class="text-center col-6 d-inline-block"><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_1.nome}}</p>
-                        <p class="text-center col-6 d-inline-block"><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_adversario_1.nome}}</p>
+                        <p class="text-center text-truncate col-6 d-inline-block px-3 mb-1"><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_1.nome}}</p>
+                        <p class="text-center text-truncate col-6 d-inline-block px-3 mb-1"><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_adversario_1.nome}}</p>
                     </div>
+
                     <p class="text-center" style="position: absolute; top: 40%;left: 50%;transform: translate(-50%, -50%);"><b>X</b></p>
+
                     <div *ngIf="partida.jogador_2.nome && partida.jogador_adversario_2.nome">
-                        <p class="text-center col-6 d-inline-block" ><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_2.nome ? partida.jogador_2.nome : ''}}</p>
-                        <p class="text-center col-6 d-inline-block" ><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_adversario_2.nome ? partida.jogador_adversario_2.nome : ''}}</p>
+                        <p class="text-center text-truncate col-6 d-inline-block px-3 mb-1" ><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_2.nome ? partida.jogador_2.nome : ''}}</p>
+                        <p class="text-center text-truncate col-6 d-inline-block px-3 mb-1" ><fa-icon [icon]="faUser"></fa-icon> {{partida.jogador_adversario_2.nome ? partida.jogador_adversario_2.nome : ''}}</p>
                     </div>
                     <!-- Talvez mudar a cor do icone de usuario para diferencialos -->
                 </div>
 
-                <div class="d-flex align-items-center p-0" style="position: relative;">
-                    <div class="d-flex justify-content-center" style="position: absolute; bottom: 0.2em; right: 0.2em;">
+                <div class="d-flex align-items-center justify-content-end p-0">
+                    <div class="d-flex justify-content-center me-2">
+                        <fa-icon [icon]="faFileLines" class="btn rounded-circle circle-yellow p-2" (click)="gerarRelatorio(partida)"></fa-icon>
+                    </div>
+                    <div class="d-flex justify-content-center">
                         <fa-icon [icon]="faPlay" class="btn rounded-circle circle-yellow p-2" (click)="iniciarPartida(partida)"></fa-icon>
                     </div>
                 </div>
