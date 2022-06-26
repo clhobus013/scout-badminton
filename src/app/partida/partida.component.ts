@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-import { faArrowLeft, faArrowRight, faCheck, faCircleUser, faPlus, faTableTennis } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faCheck, faCircleUser, faPlus, faXmark, faTableTennis } from '@fortawesome/free-solid-svg-icons';
 import { Partida } from '../Classes/Partida';
 import { Jogador } from '../Classes/Jogador';
 import { MatDialog } from '@angular/material/dialog';
@@ -23,6 +23,7 @@ export class PartidaComponent implements OnInit {
   faCheck = faCheck;
   faCircleUser = faCircleUser;
   faPlus = faPlus;
+  faXmark = faXmark;
   faTableTennis = faTableTennis;
 
   carregando = true;

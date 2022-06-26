@@ -26,17 +26,24 @@
 
                         <div class="bg-placar col-3 p-0">
 
-                            <h5 class="text-center m-1">{{partida.nome}}</h5>
+                            <h5 class="text-center">{{partida.nome}}</h5>
 
-                            <div class="placar d-flex align-items-center justify-content-around rounded p-2" style="background-color:#467E52">
+                            <div class="col-6 placar d-inline-block rounded p-2" style="background-color:#467E52">
 
-                                <div class="d-flex justify-content-center">
-                                    <h4 class="text-center text-light m-auto">{{partida.sets[tabIndex].acertos ? partida.sets[tabIndex].acertos : 0}}</h4>
+                                <div>
+                                    <fa-icon [icon]="faCheck" class="col-4 px-1" size="lg" style="color: white;"></fa-icon>
+                                    <h4 class="col-7 text-center text-light m-auto d-inline-block">{{partida.sets[tabIndex].acertos ? partida.sets[tabIndex].acertos : 0}}</h4>
                                 </div>
 
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <h4 class="text-center text-light m-auto">{{partida.sets[tabIndex].erros ? partida.sets[tabIndex].erros : 0}}</h4>
+                            </div>
+
+                            <div class="col-6 placar d-inline-block rounded p-2" style="background-color:#c02f16">
+
+                                <div >
+                                    <fa-icon [icon]="faXmark" class="col-4 px-1" size="lg" style="color: white;"></fa-icon>
+                                    <h4 class="col-7 text-center text-light m-auto d-inline-block">{{partida.sets[tabIndex].erros ? partida.sets[tabIndex].erros : 0}}</h4>
                                 </div>
+
                             </div>
 
                         </div>
