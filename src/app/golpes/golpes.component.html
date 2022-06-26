@@ -4,24 +4,28 @@
     <div class="d-flex justify-content-center" style="position:absolute; top: 0.5em; right: 0.7em;">
         <fa-icon [icon]="faXmark" size="lg" class="btn rounded-circle circle p-2" (click)="close()"></fa-icon>
     </div>
-    <div *ngFor="let golpe of filtraGolpe(null)" class="col-4 col-lg-5 d-inline-block m-auto pb-2">
-        <h5 class="text-center m-0">{{golpe.descricao}}</h5>
-        <div class="d-flex justify-content-center px-2">
-            <button type="button" class="btn btn-success btn-sm col-5 col-lg-4 mx-2" (click)="selecionaJogada(golpe, true)">
-                <fa-icon [icon]="faCheck" size="lg"></fa-icon> Acerto
+    <div *ngFor="let golpe of filtraGolpe(null)" class="col-6 d-inline-block m-auto pb-2">
+        <div class="col-12 d-flex justify-content-center px-2">
+            <h5 class="col-6 col-md-4 text-center m-auto">{{golpe.descricao}}</h5>
+
+            <button type="button" class="btn btn-success btn-sm col-3 col-md-4 col-lg-4 me-1 p-0 py-1 py-lg-2" (click)="selecionaJogada(golpe, true)">
+                <fa-icon [icon]="faCheck" size="lg" class="col-4"></fa-icon>
+                <p class="col-8 m-0 d-md-inline-block d-none">Acerto</p>
             </button>
-            <button type="button" class="btn btn-danger btn-sm col-5 col-lg-4 mx-2" (click)="selecionaJogada(golpe, false)">
-                <fa-icon [icon]="faXmark" size="lg"></fa-icon> Erro
+
+            <button type="button" class="btn btn-danger btn-sm col-3 col-md-4 col-lg-4 ms-1 p-0 py-1 py-lg-2" (click)="selecionaJogada(golpe, false)">
+                <fa-icon [icon]="faXmark" size="lg" class="col-4"></fa-icon>
+                <p class="col-8 m-0 d-md-inline-block d-none">Erro</p>
             </button>
         </div>
     </div>
 
     <!-- SAQUE -->
     <!-- Add separado para ficarm em baixo e alterar o botao de erro -->
-    <div *ngFor="let golpe of filtraGolpe(1)" class="col-4 col-lg-5 d-inline-block m-auto pb-2">
+    <div *ngFor="let golpe of filtraGolpe(1)" class="col-6 col-md-5 d-inline-block m-auto pb-2">
         <h6 class="text-center m-0">{{golpe.descricao}}</h6>
-        <div class="d-flex justify-content-center px-2">
-            <button type="button" class="btn btn-success btn-sm col-5 mx-2" (click)="selecionaJogada(golpe, true)">
+        <div class="col-12 d-flex justify-content-center px-2">
+            <button type="button" class="btn btn-success btn-sm col-5 mx-2 p-0 py-1 py-lg-2" (click)="selecionaJogada(golpe, true)">
                 <fa-icon [icon]="faCheck" size="lg"></fa-icon> Acerto
             </button>
 
