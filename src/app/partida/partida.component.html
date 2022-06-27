@@ -62,11 +62,54 @@
 
                     <div class="quadra col-12 position-relative">
 
-                        <div *ngFor="let quadrante of quadrantes | slice:0:12" class="quadrante col-2 bg-quadra d-inline-block p-3">
+                        <!-- <div *ngFor="let quadrante of quadrantes | slice:0:12" class="quadrante col-2 bg-quadra d-inline-block p-3">
                             <div class="d-flex justify-content-center" (click)="abrirModalJogada(quadrante)">
                                 <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
                             </div>
+                        </div> -->
+
+                        <div class="p-2">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 591 248" style="position: relative;">
+                                <path id="Vetor importado"
+                                        fill="#467E52" stroke="white" stroke-width="1"
+                                        d="M 591.00,0.00
+                                        C 591.00,0.00 591.00,248.00 591.00,248.00
+                                            591.00,248.00 0.00,248.00 0.00,248.00
+                                            0.00,248.00 0.00,0.00 0.00,0.00
+                                            0.00,0.00 591.00,0.00 591.00,0.00 Z
+                                        M 560.47,0.00
+                                        C 560.47,0.00 560.47,248.08 560.47,248.08M 596.00,225.93
+                                        C 596.00,225.93 5.15,226.96 5.15,226.96M 590.85,124.02
+                                        C 590.85,124.02 393.00,124.02 393.00,124.02M 199.50,124.02
+                                        C 199.50,124.02 0.00,124.02 0.00,124.02M 590.85,20.06
+                                        C 590.85,20.06 0.00,21.09 0.00,21.09M 393.13,0.00
+                                        C 393.13,0.00 393.13,248.08 393.13,248.08M 199.76,0.00
+                                        C 199.76,0.00 199.76,248.08 199.76,248.08M 29.32,0.00
+                                        C 29.32,0.00 29.32,248.08 29.32,248.08M 296.43,0.00
+                                        C 296.43,0.00 296.43,248.08 296.43,248.08M 590.85,0.00
+                                        C 590.85,0.00 590.85,248.08 590.85,248.08
+                                            590.85,248.08 0.00,248.08 0.00,248.08
+                                            0.00,248.08 0.00,0.00 0.00,0.00
+                                            0.00,0.00 590.85,0.00 590.85,0.00 Z
+                                        M 591.00,0.00
+                                        C 591.00,0.00 591.00,248.00 591.00,248.00
+                                            591.00,248.00 0.00,248.00 0.00,248.00
+                                            0.00,248.00 0.00,0.00 0.00,0.00
+                                            0.00,0.00 591.00,0.00 591.00,0.00 Z" />
+                            </svg>
+            
+                            <div class="col-12 px-4" style="position: absolute; top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);">
+                                <div *ngFor="let quadrante of quadrantes | slice:0:12" class="col-2 d-inline-block p-3 py-4 my-md-3" >
+                                    <div class="d-flex justify-content-center p-1" (click)="abrirModalJogada(quadrante)">
+                                        <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
 
                         <div class="bt-rede position-absolute" (click)="abrirModalJogada(quadrantes[12])">
                             <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
@@ -94,9 +137,9 @@
         
             <!-- <div class="p-2">
                 <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 591 248">
+     viewBox="0 0 591 248" style="position: relative;">
                     <path id="Vetor importado"
-                            fill="none" stroke="black" stroke-width="1"
+                            fill="#467E52" stroke="white" stroke-width="1"
                             d="M 591.00,0.00
                             C 591.00,0.00 591.00,248.00 591.00,248.00
                                 591.00,248.00 0.00,248.00 0.00,248.00
@@ -122,6 +165,14 @@
                                 0.00,248.00 0.00,0.00 0.00,0.00
                                 0.00,0.00 591.00,0.00 591.00,0.00 Z" />
                 </svg>
+
+                <div class="col-12" style="position: absolute; top:0; left:0">
+                    <div *ngFor="let quadrante of quadrantes | slice:0:12" class="col-2 d-inline-block p-3" >
+                        <div class="d-flex justify-content-center" (click)="abrirModalJogada(quadrante)">
+                            <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
+                        </div>
+                    </div>
+                </div>
             </div> -->
 
         </mat-tab>
