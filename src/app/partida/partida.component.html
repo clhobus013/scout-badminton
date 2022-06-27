@@ -3,178 +3,130 @@
     <mat-tab-group *ngIf="!carregando" #matTab [(selectedIndex)]="tabIndex" mat-align-tabs="start" (selectedTabChange)="selecionaSet($event.index+1);">
         <mat-tab *ngFor="let set of sets" label="Set {{set.ordem_set}}">
 
-            <div class="conteudo col-12 p-3">
+            <div class="conteudo col-12 py-2 px-3">
 
-                <div class="title d-flex align-items-center p-0">
-                    <div class="d-flex justify-content-center">
-                        <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle-yellow p-2" (click)="goBack()"></fa-icon>
+                <div class="users col-12 d-flex px-2">
+
+                    <div class="title d-flex align-items-center p-0">
+                        <div class="d-flex justify-content-center">
+                            <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle-yellow p-2" (click)="goBack()"></fa-icon>
+                        </div>
                     </div>
-                    <h1 class="text-center p-1 ps-2 my-auto">{{partida.nome}}</h1>
+
+                    <div *ngIf="partida.jogador_1.nome" class="jogador col-2 mw-50 d-flex flex-wrap justify-content-center mx-auto p-1">
+                        <fa-icon [icon]="faCircleUser" class="m-auto my-0" style="font-size:35px"></fa-icon>
+                        <p class="col-12 text-center text-truncate mb-1" style="font-size:13px;">{{partida.jogador_1.nome}}</p>
+                    </div>
+
+                    <div *ngIf="partida.jogador_2.nome" class="jogador col-2 d-flex flex-wrap mx-auto p-1">
+                        <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:35px"></fa-icon>
+                        <p class="col-12 text-center text-truncate mb-1" style="font-size:13px">{{partida.jogador_2.nome}}</p>
+                    </div>
+
+                    <div class="bg-placar col-3 p-0">
+
+                        <h5 class="text-center">{{partida.nome}}</h5>
+
+                        <div class="col-6 placar d-inline-block rounded p-2" style="background-color:#467E52">
+
+                            <div>
+                                <fa-icon [icon]="faCheck" class="col-4 px-1" size="lg" style="color: white;"></fa-icon>
+                                <h4 class="col-7 text-center text-light m-auto d-inline-block">{{partida.sets[tabIndex].acertos ? partida.sets[tabIndex].acertos : 0}}</h4>
+                            </div>
+
+                        </div>
+
+                        <div class="col-6 placar d-inline-block rounded p-2" style="background-color:#c02f16">
+
+                            <div >
+                                <fa-icon [icon]="faXmark" class="col-4 px-1" size="lg" style="color: white;"></fa-icon>
+                                <h4 class="col-7 text-center text-light m-auto d-inline-block">{{partida.sets[tabIndex].erros ? partida.sets[tabIndex].erros : 0}}</h4>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div *ngIf="partida.jogador_adversario_1.nome" class="jogador col-2 d-flex flex-wrap mx-auto p-1">
+                        <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:35px"></fa-icon>
+                        <p class="col-12 text-center text-truncate mb-1" style="font-size:13px">{{partida.jogador_adversario_1.nome}}</p>
+                    </div>
+
+                    <div *ngIf="partida.jogador_adversario_2.nome" class="jogador col-2 d-flex flex-wrap mx-auto p-1">
+                        <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:35px"></fa-icon>
+                        <p class="col-12 text-center text-truncate mb-1" style="font-size:13px">{{partida.jogador_adversario_2.nome}}</p>
+                    </div>
                 </div>
 
-                <div class="central">
-                    <div class="users col-12 d-flex px-2">
-                        <div *ngIf="partida.jogador_1.nome" class="jogador col-2 mw-50 d-flex flex-wrap justify-content-center mx-auto p-1">
-                            <fa-icon [icon]="faCircleUser" class="m-auto my-0" style="font-size:35px"></fa-icon>
-                            <p class="col-12 text-center text-truncate mb-1" style="font-size:13px;">{{partida.jogador_1.nome}}</p>
-                        </div>
+                <div class="quadra col-12 position-relative">
 
-                        <div *ngIf="partida.jogador_2.nome" class="jogador col-2 d-flex flex-wrap mx-auto p-1">
-                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:35px"></fa-icon>
-                            <p class="col-12 text-center text-truncate mb-1" style="font-size:13px">{{partida.jogador_2.nome}}</p>
-                        </div>
+                    <div class="col-9 p-2 m-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 591 248" style="position: relative;">
+                            <path id="Vetor importado"
+                                    fill="#467E52" stroke="white" stroke-width="1"
+                                    d="M 591.00,0.00
+                                    C 591.00,0.00 591.00,248.00 591.00,248.00
+                                        591.00,248.00 0.00,248.00 0.00,248.00
+                                        0.00,248.00 0.00,0.00 0.00,0.00
+                                        0.00,0.00 591.00,0.00 591.00,0.00 Z
+                                    M 560.47,0.00
+                                    C 560.47,0.00 560.47,248.08 560.47,248.08M 596.00,225.93
+                                    C 596.00,225.93 5.15,226.96 5.15,226.96M 590.85,124.02
+                                    C 590.85,124.02 393.00,124.02 393.00,124.02M 199.50,124.02
+                                    C 199.50,124.02 0.00,124.02 0.00,124.02M 590.85,20.06
+                                    C 590.85,20.06 0.00,21.09 0.00,21.09M 393.13,0.00
+                                    C 393.13,0.00 393.13,248.08 393.13,248.08M 199.76,0.00
+                                    C 199.76,0.00 199.76,248.08 199.76,248.08M 29.32,0.00
+                                    C 29.32,0.00 29.32,248.08 29.32,248.08M 296.43,0.00
+                                    C 296.43,0.00 296.43,248.08 296.43,248.08M 590.85,0.00
+                                    C 590.85,0.00 590.85,248.08 590.85,248.08
+                                        590.85,248.08 0.00,248.08 0.00,248.08
+                                        0.00,248.08 0.00,0.00 0.00,0.00
+                                        0.00,0.00 590.85,0.00 590.85,0.00 Z
+                                    M 591.00,0.00
+                                    C 591.00,0.00 591.00,248.00 591.00,248.00
+                                        591.00,248.00 0.00,248.00 0.00,248.00
+                                        0.00,248.00 0.00,0.00 0.00,0.00
+                                        0.00,0.00 591.00,0.00 591.00,0.00 Z" />
+                        </svg>
 
-                        <div class="bg-placar col-3 p-0">
-
-                            <h5 class="text-center">{{partida.nome}}</h5>
-
-                            <div class="col-6 placar d-inline-block rounded p-2" style="background-color:#467E52">
-
-                                <div>
-                                    <fa-icon [icon]="faCheck" class="col-4 px-1" size="lg" style="color: white;"></fa-icon>
-                                    <h4 class="col-7 text-center text-light m-auto d-inline-block">{{partida.sets[tabIndex].acertos ? partida.sets[tabIndex].acertos : 0}}</h4>
+                        <div class="col-9 px-4 m-auto" style="position: absolute; top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);">
+                            <div *ngFor="let quadrante of quadrantes | slice:0:12" class="col-2 d-inline-block py-2 p-3 py-sm-4 my-md-3" >
+                                <div class="d-flex justify-content-center p-1" (click)="abrirModalJogada(quadrante)">
+                                    <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
                                 </div>
-
                             </div>
-
-                            <div class="col-6 placar d-inline-block rounded p-2" style="background-color:#c02f16">
-
-                                <div >
-                                    <fa-icon [icon]="faXmark" class="col-4 px-1" size="lg" style="color: white;"></fa-icon>
-                                    <h4 class="col-7 text-center text-light m-auto d-inline-block">{{partida.sets[tabIndex].erros ? partida.sets[tabIndex].erros : 0}}</h4>
-                                </div>
-
-                            </div>
-
                         </div>
-
-
-                        <div *ngIf="partida.jogador_adversario_1.nome" class="jogador col-2 d-flex flex-wrap mx-auto p-1">
-                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:35px"></fa-icon>
-                            <p class="col-12 text-center text-truncate mb-1" style="font-size:13px">{{partida.jogador_adversario_1.nome}}</p>
-                        </div>
-
-                        <div *ngIf="partida.jogador_adversario_2.nome" class="jogador col-2 d-flex flex-wrap mx-auto p-1">
-                            <fa-icon [icon]="faCircleUser" class="m-auto" style="font-size:35px"></fa-icon>
-                            <p class="col-12 text-center text-truncate mb-1" style="font-size:13px">{{partida.jogador_adversario_2.nome}}</p>
-                        </div>
+        
                     </div>
 
-                    <div class="quadra col-12 position-relative">
-
-                        <!-- <div *ngFor="let quadrante of quadrantes | slice:0:12" class="quadrante col-2 bg-quadra d-inline-block p-3">
-                            <div class="d-flex justify-content-center" (click)="abrirModalJogada(quadrante)">
-                                <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
-                            </div>
-                        </div> -->
-
-                        <div class="p-2">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 591 248" style="position: relative;">
-                                <path id="Vetor importado"
-                                        fill="#467E52" stroke="white" stroke-width="1"
-                                        d="M 591.00,0.00
-                                        C 591.00,0.00 591.00,248.00 591.00,248.00
-                                            591.00,248.00 0.00,248.00 0.00,248.00
-                                            0.00,248.00 0.00,0.00 0.00,0.00
-                                            0.00,0.00 591.00,0.00 591.00,0.00 Z
-                                        M 560.47,0.00
-                                        C 560.47,0.00 560.47,248.08 560.47,248.08M 596.00,225.93
-                                        C 596.00,225.93 5.15,226.96 5.15,226.96M 590.85,124.02
-                                        C 590.85,124.02 393.00,124.02 393.00,124.02M 199.50,124.02
-                                        C 199.50,124.02 0.00,124.02 0.00,124.02M 590.85,20.06
-                                        C 590.85,20.06 0.00,21.09 0.00,21.09M 393.13,0.00
-                                        C 393.13,0.00 393.13,248.08 393.13,248.08M 199.76,0.00
-                                        C 199.76,0.00 199.76,248.08 199.76,248.08M 29.32,0.00
-                                        C 29.32,0.00 29.32,248.08 29.32,248.08M 296.43,0.00
-                                        C 296.43,0.00 296.43,248.08 296.43,248.08M 590.85,0.00
-                                        C 590.85,0.00 590.85,248.08 590.85,248.08
-                                            590.85,248.08 0.00,248.08 0.00,248.08
-                                            0.00,248.08 0.00,0.00 0.00,0.00
-                                            0.00,0.00 590.85,0.00 590.85,0.00 Z
-                                        M 591.00,0.00
-                                        C 591.00,0.00 591.00,248.00 591.00,248.00
-                                            591.00,248.00 0.00,248.00 0.00,248.00
-                                            0.00,248.00 0.00,0.00 0.00,0.00
-                                            0.00,0.00 591.00,0.00 591.00,0.00 Z" />
-                            </svg>
-            
-                            <div class="col-12 px-4" style="position: absolute; top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);">
-                                <div *ngFor="let quadrante of quadrantes | slice:0:12" class="col-2 d-inline-block p-3 py-4 my-md-3" >
-                                    <div class="d-flex justify-content-center p-1" (click)="abrirModalJogada(quadrante)">
-                                        <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="bt-rede position-absolute" (click)="abrirModalJogada(quadrantes[12])">
-                            <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
-                        </div>
-
-                        <button mat-icon-button [matMenuTriggerFor]="menu" class="bt-fora-quadra position-fixed" aria-label="botão fora da quadra">
-                            <fa-icon [icon]="faTableTennis" size="lg" class="btn circle-yellow rounded-circle p-2"></fa-icon>
-                        </button>
-
-                        <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="abrirModalJogada(quadrantes[13])">
-                            <fa-icon [icon]="faArrowLeft"></fa-icon>
-                            <span class="px-1">{{quadrantes[13].descricao}}</span>
-                        </button>
-                        <button mat-menu-item (click)="abrirModalJogada(quadrantes[14])" >
-                            <fa-icon [icon]="faArrowRight"></fa-icon>
-                            <span class="px-1">{{quadrantes[14].descricao}}</span>
-                        </button>
-                        </mat-menu>
-
+                    <div class="bt-rede position-absolute" (click)="abrirModalJogada(quadrantes[12])">
+                        <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
                     </div>
+
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="bt-fora-quadra position-fixed" aria-label="botão fora da quadra">
+                        <fa-icon [icon]="faTableTennis" size="lg" class="btn circle-yellow rounded-circle p-2"></fa-icon>
+                    </button>
+
+                    <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="abrirModalJogada(quadrantes[13])">
+                        <fa-icon [icon]="faArrowLeft"></fa-icon>
+                        <span class="px-1">{{quadrantes[13].descricao}}</span>
+                    </button>
+                    <button mat-menu-item (click)="abrirModalJogada(quadrantes[14])" >
+                        <fa-icon [icon]="faArrowRight"></fa-icon>
+                        <span class="px-1">{{quadrantes[14].descricao}}</span>
+                    </button>
+                    </mat-menu>
+
                 </div>
 
             </div>
         
-            <!-- <div class="p-2">
-                <svg xmlns="http://www.w3.org/2000/svg"
-     viewBox="0 0 591 248" style="position: relative;">
-                    <path id="Vetor importado"
-                            fill="#467E52" stroke="white" stroke-width="1"
-                            d="M 591.00,0.00
-                            C 591.00,0.00 591.00,248.00 591.00,248.00
-                                591.00,248.00 0.00,248.00 0.00,248.00
-                                0.00,248.00 0.00,0.00 0.00,0.00
-                                0.00,0.00 591.00,0.00 591.00,0.00 Z
-                            M 560.47,0.00
-                            C 560.47,0.00 560.47,248.08 560.47,248.08M 596.00,225.93
-                            C 596.00,225.93 5.15,226.96 5.15,226.96M 590.85,124.02
-                            C 590.85,124.02 393.00,124.02 393.00,124.02M 199.50,124.02
-                            C 199.50,124.02 0.00,124.02 0.00,124.02M 590.85,20.06
-                            C 590.85,20.06 0.00,21.09 0.00,21.09M 393.13,0.00
-                            C 393.13,0.00 393.13,248.08 393.13,248.08M 199.76,0.00
-                            C 199.76,0.00 199.76,248.08 199.76,248.08M 29.32,0.00
-                            C 29.32,0.00 29.32,248.08 29.32,248.08M 296.43,0.00
-                            C 296.43,0.00 296.43,248.08 296.43,248.08M 590.85,0.00
-                            C 590.85,0.00 590.85,248.08 590.85,248.08
-                                590.85,248.08 0.00,248.08 0.00,248.08
-                                0.00,248.08 0.00,0.00 0.00,0.00
-                                0.00,0.00 590.85,0.00 590.85,0.00 Z
-                            M 591.00,0.00
-                            C 591.00,0.00 591.00,248.00 591.00,248.00
-                                591.00,248.00 0.00,248.00 0.00,248.00
-                                0.00,248.00 0.00,0.00 0.00,0.00
-                                0.00,0.00 591.00,0.00 591.00,0.00 Z" />
-                </svg>
-
-                <div class="col-12" style="position: absolute; top:0; left:0">
-                    <div *ngFor="let quadrante of quadrantes | slice:0:12" class="col-2 d-inline-block p-3" >
-                        <div class="d-flex justify-content-center" (click)="abrirModalJogada(quadrante)">
-                            <fa-icon [icon]="faPlus" size="lg" class="btn rounded-circle circle-green p-2"></fa-icon>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
         </mat-tab>
     </mat-tab-group>
 
