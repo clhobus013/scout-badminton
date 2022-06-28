@@ -1,82 +1,96 @@
-<div class="container-fluid bg-relatorio menu p-4" style="position:relative">
+<div class="container-fluid bg-relatorio menu p-4">
 
-    <div class="row gy-3" >
+    <div class="row gy-3">
+
+        <div class="relatorio col-12">
       
-        <div class="title d-flex align-items-center p-0">
-            <div class="d-flex justify-content-center">
-                <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle-yellow p-2" (click)="goBack()"></fa-icon>
-            </div>
-            <h1 class="col-10 text-center p-1">Relarório</h1>
-        </div>
-
-        <div *ngIf="!carregando" class="col-12 col-md-6 px-2">
-
-            <h3 class="col-12 text-center">
-                {{relatorio.E_nome | titlecase}} ({{relatorio.F_jogador.substr(0, 10)}})
-            </h3>
-
-            <h4 class="col-9 text-center m-auto">{{relatorio.H_partida_acertos}} x {{relatorio.J_partida_erros}}</h4>
-                
-
-            <div class="col-12">
-                <p class="col-6 text-center d-inline-block m-0">{{relatorio.C_tipo_jogo}} - {{relatorio.D_modalidade}}</p>
-                <p class="col-6 text-center d-inline-block m-0">{{formataData(relatorio.B_data)}}</p>
+            <div class="title d-flex align-items-center p-0">
+                <div class="col-12 d-flex justify-content-center">
+                    <fa-icon [icon]="faArrowLeft" size="lg" class="btn rounded-circle circle-yellow p-2" (click)="goBack()"></fa-icon>
+                    <h1 class="text-center p-1 m-auto">Relarório</h1>
+                    <fa-icon [icon]="faInfo" class="btn rounded-circle circle-yellow p-2 px-3" (click)="abrirImagem('quadra-completa.png')"></fa-icon>
+                </div>
             </div>
 
-            <hr/>
+            <div *ngIf="!carregando" class="col-12 col-md-10 px-2 m-auto">
 
-            <div *ngFor="let set of relatorio.L_set_resultado">
+                <h3 class="col-12 text-center">
+                    {{relatorio.E_nome | titlecase}} ({{relatorio.F_jogador.substr(0, 10)}})
+                </h3>
+
+                <h4 class="col-9 text-center m-auto">{{relatorio.H_partida_acertos}} x {{relatorio.J_partida_erros}}</h4>
+                    
 
                 <div class="col-12">
-                    <h5 class="col-2 d-inline-block">Set {{set.B_set_ordem}}</h5>
-                    <p class="col-5 d-inline-block"><b>
-                        Acertos: {{set.E_set_acertos}} </b> ({{set.G_set_acertos_relacao_set}}%)
-                    </p>
-                    <p class="col-5 d-inline-block"><b>
-                        Erros: {{set.H_set_erros}}  </b> ({{set.J_set_erros_relacao_set}} %)
-                    </p>
+                    <p class="col-6 text-center d-inline-block m-0">{{relatorio.C_tipo_jogo}} - {{relatorio.D_modalidade}}</p>
+                    <p class="col-6 text-center d-inline-block m-0">{{formataData(relatorio.B_data)}}</p>
                 </div>
 
-                <div *ngFor="let golpe of set.K_jogadas">
+                <hr/>
 
-                    <h6 class="col-12 ps-3 d-inline-block">{{golpe.B_golpe}}</h6>
-                    <div class="col-12 ps-4">
-                        <h6 class="col-6 d-inline-block">
-                            Acerto: {{golpe.E_golpe_acertos}} ({{golpe.F_golpe_acertos_porc}}%)
-                        </h6>
+                <div *ngFor="let set of relatorio.L_set_resultado">
+
+                    <div class="col-12">
+                        <h5 class="col-2 d-inline-block">Set {{set.B_set_ordem}}</h5>
+                        <p class="col-5 d-inline-block"><b>
+                            Acertos: {{set.E_set_acertos}} </b> ({{set.G_set_acertos_relacao_set}}%)
+                        </p>
+                        <p class="col-5 d-inline-block"><b>
+                            Erros: {{set.H_set_erros}}  </b> ({{set.J_set_erros_relacao_set}} %)
+                        </p>
                     </div>
 
-                    <div *ngFor="let qAcerto of golpe.I_quadrantes_acerto">
+                    <div *ngFor="let golpe of set.K_jogadas">
 
-                        <div class="col-12 ps-4">
-                            <p class="col-4 d-inline-block">{{qAcerto.B_quadrante}}</p>
-                            <p class="col-4 d-inline-block">
-                                Acerto: {{qAcerto.C_quadrante_total}}
-                                <!-- ({{qAcerto.D_quadrante_relacao_golpe}}%) -->
-                            </p>
-                        </div>
+                        <h6 class="col-12 ps-3 d-inline-block">{{golpe.B_golpe}}</h6>
+                        <div class="col-12 col-md-6 ps-4 d-inline-block" >
+                            <h6 class="col-6 d-inline-block" (click)="expandeAcerto(golpe.A_golpe_id)">
+                                Acerto: {{golpe.E_golpe_acertos}} ({{golpe.F_golpe_acertos_porc}}%)
+                                <fa-icon *ngIf="!mostraAcerto || acerto != golpe.A_golpe_id" [icon]="faCaretDown"></fa-icon>
+                                <fa-icon *ngIf="mostraAcerto && acerto == golpe.A_golpe_id" [icon]="faCaretUp"></fa-icon>
+                            </h6>
+                            <div *ngIf="mostraAcerto && acerto == golpe.A_golpe_id">
+                                <div *ngFor="let qAcerto of golpe.I_quadrantes_acerto">
     
-                    </div>
+                                    <div  class="col-12 ps-4">                                   
+                                        
+                                        <p class="d-inline-block px-2 py-1 m-0">{{qAcerto.C_quadrante_total}}x {{qAcerto.B_quadrante}}</p>
+                                        <div class="col-2 d-inline-block">
+                                            <img *ngIf="qAcerto.A_quadrante_id < 13" src="../../assets/quadra/Q{{qAcerto.A_quadrante_id}}.png" class="img-fluid" alt="Responsive image">
+                                        </div>
 
-                    <div class="col-12 ps-4">
-                        <h6 class="col-6 d-inline-block">
-                            Erro: {{golpe.G_golpe_erros}} ({{golpe.H_golpe_erros_porc}} %)
-                        </h6>
-                    </div>
 
-                    <div *ngFor="let qErro of golpe.J_quadrantes_erro">
-
-                        <div class="col-12 ps-4">
-                            <p class="col-4 d-inline-block">{{qErro.B_quadrante}}</p>
-                            <p class="col-4 d-inline-block">
-                                Erro: {{qErro.C_quadrante_total}}
-                                <!-- ({{qErro.D_quadrante_relacao_golpe}}%) -->
-                            </p>
+                                    </div>
+                
+                                </div>
+                            </div>
                         </div>
-    
-                    </div>
 
-                    <hr/>
+
+                        <div class="col-12 col-md-6 ps-4 d-inline-block">
+                            <h6 class="col-6 d-inline-block" (click)="expandeErro(golpe.A_golpe_id)">
+                                Erro: {{golpe.G_golpe_erros}} ({{golpe.H_golpe_erros_porc}} %)
+                                <fa-icon *ngIf="!mostraErro || erro != golpe.A_golpe_id" [icon]="faCaretDown"></fa-icon>
+                                <fa-icon *ngIf="mostraErro && erro == golpe.A_golpe_id" [icon]="faCaretUp"></fa-icon>
+                            </h6>
+                            <div *ngIf="mostraErro && erro == golpe.A_golpe_id">
+                                <div *ngFor="let qErro of golpe.J_quadrantes_erro">
+    
+                                    <div class="col-12 ps-4">
+                                        <p class="d-inline-block px-2 py-1 m-0">{{qErro.C_quadrante_total}}x {{qErro.B_quadrante}}</p>
+                                        <div class="col-2 d-inline-block">
+                                            <img *ngIf="qErro.A_quadrante_id < 13" src="../../assets/quadra/Q{{qErro.A_quadrante_id}}.png" class="img-fluid" alt="Responsive image">
+                                        </div>
+                                    </div>
+                
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <hr class="m-1"/>
+
+                    </div>
 
                 </div>
 
@@ -91,6 +105,4 @@
     </div>
 
 </div>
-
-
 

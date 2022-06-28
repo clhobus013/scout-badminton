@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Global } from '../common/global.component';
 import { ToastrService } from 'ngx-toastr';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCaretDown, faCaretUp, faInfo } from '@fortawesome/free-solid-svg-icons';
+import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-relatorio',
@@ -14,11 +15,19 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 export class RelatorioComponent implements OnInit {
 
   faArrowLeft = faArrowLeft;
+  faCaretDown = faCaretDown;
+  faCaretUp = faCaretUp;
+  faInfo = faInfo;
+
+  acerto = 0;
+  erro = 0;
+  mostraAcerto = false;
+  mostraErro = false;
 
   carregando = true;
   relatorio: any;
 
-  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute, private global: Global) { }
+  constructor(private http: HttpClient, private _location: Location, private toastr: ToastrService, private route: ActivatedRoute, private global: Global, public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -56,6 +65,30 @@ export class RelatorioComponent implements OnInit {
     })
   }
 
+  public abrirImagem(imagem: string){
+
+    this.dialog.open(DialogDataExampleDialog, {
+      data: {
+        imagem: imagem,
+      },
+    });
+
+  }
+
+  public expandeAcerto(jogada: number){
+    
+    this.mostraAcerto = !this.mostraAcerto;
+    this.acerto = jogada;
+
+  }
+
+  public expandeErro(jogada: number){
+    
+    this.mostraErro = !this.mostraErro;
+    this.erro = jogada;
+    
+  }
+
   public formataData(data: string){
     return this.global.formataData(data);
   }
@@ -64,4 +97,12 @@ export class RelatorioComponent implements OnInit {
     this._location.back();
   }
 
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'open-image.html',
+})
+export class DialogDataExampleDialog {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }

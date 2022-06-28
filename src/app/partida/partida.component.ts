@@ -120,7 +120,16 @@ export class PartidaComponent implements OnInit {
         return;
       }
       
-      this.quadrantes = ret.quadrantes;
+      this.quadrantes = ret.quadrantes.sort(function (a:any, b:any) {
+          if (a.id > b.id) {
+            return 1;
+          }
+          if (a.id < b.id) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
 
     },
     erro => {
