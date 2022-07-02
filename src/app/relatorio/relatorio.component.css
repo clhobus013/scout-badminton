@@ -1,9 +1,9 @@
 .bg-relatorio{
     /* gambiarra pra setar o background. Quando dava scroll ficava com fundo amarelo =) */
-    top:0px; bottom: 0px;
+    /* top:0px; bottom: 0px; */
     height: 100%;
     background-color: white;
-    position: absolute;
+    /* position: absolute; */
     overflow-x: scroll;
 }
 
