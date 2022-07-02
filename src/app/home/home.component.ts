@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faTableTennis } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class HomeComponent implements OnInit {
 
-  faCoffee = faCoffee;
+  faTableTennis = faTableTennis;
 
   title = 'scout-badminton';
   jogadores : any[] = [];
