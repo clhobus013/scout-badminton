@@ -52,9 +52,9 @@
                     <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>
                 </select>
     
-                <h5 class="col-12 text-center m-auto p-2"><b>Jogadore(s) Adverário(s)</b></h5>
+                <h5 class="col-12 text-center m-auto p-2"><b>Jogadore(s) Adversário(s)</b></h5>
     
-                <label for="jogador-adv-1" class="col-12 py-1">Jogador Adverário 1</label>
+                <label for="jogador-adv-1" class="col-12 py-1">Jogador Adversário 1</label>
                 <select [(ngModel)]="partida.jogador_adversario_1" class="col-12 form-select" aria-label="Seletor jogador adversario 1">
                     <option selected value="undefined">Selecione um jogador Adversário</option>
                     <option *ngFor="let jogador of jogadores" [ngValue]="jogador.id">{{jogador.nome}}</option>

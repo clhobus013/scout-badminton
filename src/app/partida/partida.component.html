@@ -108,18 +108,19 @@
                         <fa-icon [icon]="faPlus" size="lg" class="btn circle-green rounded-circle p-2"></fa-icon>
                     </div>
 
-                    <button mat-icon-button [matMenuTriggerFor]="menu" class="bt-fora-quadra position-fixed" aria-label="botão fora da quadra">
-                        <fa-icon [icon]="faTableTennis" size="lg" class="btn circle-yellow rounded-circle p-2"></fa-icon>
+                    <button mat-icon-button [matMenuTriggerFor]="menu" class="bt-fora-quadra position-fixed rounded-circle circle-yellow" aria-label="botão fora da quadra">
+                        <!-- <fa-icon [icon]="faTableTennis" size="lg" class="btn circle-yellow rounded-circle p-2"></fa-icon> -->
+                        <img src="../../assets/peteca_branca.png" class="img-fluid btn p-2" alt="Responsive image">
                     </button>
 
                     <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="abrirModalJogada(quadrantes[13])">
-                        <fa-icon [icon]="faArrowLeft"></fa-icon>
-                        <span class="px-1">{{quadrantes[13].descricao}}</span>
-                    </button>
                     <button mat-menu-item (click)="abrirModalJogada(quadrantes[14])" >
-                        <fa-icon [icon]="faArrowRight"></fa-icon>
+                        <fa-icon [icon]="faArrowLeft"></fa-icon>
                         <span class="px-1">{{quadrantes[14].descricao}}</span>
+                    </button>
+                    <button mat-menu-item (click)="abrirModalJogada(quadrantes[13])">
+                        <fa-icon [icon]="faArrowRight"></fa-icon>
+                        <span class="px-1">{{quadrantes[13].descricao}}</span>
                     </button>
                     </mat-menu>
 
