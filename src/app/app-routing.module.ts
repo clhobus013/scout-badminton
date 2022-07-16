@@ -8,6 +8,7 @@ import { ListaPartidaComponent } from './lista-partida/lista-partida.component';
 import { GolpesComponent } from './golpes/golpes.component';
 import { PartidaComponent } from './partida/partida.component';
 import { RelatorioComponent } from './relatorio/relatorio.component';
+import { GraficoComponent } from './grafico/grafico.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'lista-partida', component: ListaPartidaComponent },
   { path: 'golpes', component: GolpesComponent },
   { path: 'partida/:id', component: PartidaComponent },
-  { path: 'relatorio/:id', component: RelatorioComponent }
+  { path: 'relatorio/:id', component: RelatorioComponent },
+  { path: 'grafico', component: GraficoComponent }
 ];
 
 @NgModule({

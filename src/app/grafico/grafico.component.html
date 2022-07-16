@@ -1,0 +1,26 @@
+
+<mat-tab-group (selectedTabChange)="tabChanged($event)">
+    <mat-tab *ngFor="let set of data.relatorio.L_set_resultado; let i = index" label="Set {{set.B_set_ordem}}">
+
+        <div #containerRef class="col-12">
+        
+            <ngx-charts-bar-vertical-2d
+              [view]="[containerRef.offsetWidth, 400]"
+              [scheme]="colorScheme"
+              [results]="relatorio"
+              [xAxis]="showXAxis"
+              [yAxis]="showYAxis"
+              [legend]="showLegend"
+              [legendTitle]="'Legenda'"
+              [showXAxisLabel]="showXAxisLabel"
+              [showYAxisLabel]="showYAxisLabel"
+              [xAxisLabel]="xAxisLabel"
+              [yAxisLabel]="yAxisLabel"
+              [yScaleMax]="yScaleMax">
+            </ngx-charts-bar-vertical-2d>
+        
+        </div>
+
+    </mat-tab>
+</mat-tab-group>
+

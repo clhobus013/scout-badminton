@@ -4,8 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Global } from '../common/global.component';
 import { ToastrService } from 'ngx-toastr';
-import { faArrowLeft, faCaretDown, faCaretUp, faInfo } from '@fortawesome/free-solid-svg-icons';
-import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { faArrowLeft, faCaretDown, faCaretUp, faInfo, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { GraficoComponent } from '../grafico/grafico.component';
 
 @Component({
   selector: 'app-relatorio',
@@ -18,6 +19,7 @@ export class RelatorioComponent implements OnInit {
   faCaretDown = faCaretDown;
   faCaretUp = faCaretUp;
   faInfo = faInfo;
+  faChartLine = faChartLine;
 
   acerto = 0;
   erro = 0;
@@ -73,6 +75,15 @@ export class RelatorioComponent implements OnInit {
       },
     });
 
+  }
+
+  public openDialog(){
+    this.dialog.open(GraficoComponent, {
+      width: '80vw',
+      data: {
+        relatorio: this.relatorio
+      }
+    });
   }
 
   public expandeAcerto(jogada: number){

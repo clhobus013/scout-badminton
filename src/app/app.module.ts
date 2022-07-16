@@ -17,6 +17,8 @@ import { CadastroPartidaComponent } from './cadastro-partida/cadastro-partida.co
 import { ListaPartidaComponent } from './lista-partida/lista-partida.component';
 import { GolpesComponent } from './golpes/golpes.component';
 import { PartidaComponent } from './partida/partida.component';
+import { RelatorioComponent } from './relatorio/relatorio.component';
+import { GraficoComponent } from './grafico/grafico.component';
 import { Global } from './common/global.component';
 
 import { MatSelectModule } from '@angular/material/select';
@@ -27,7 +29,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
-import { RelatorioComponent } from './relatorio/relatorio.component';
+
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 const materialModules = [
   MatSelectModule,
@@ -50,7 +53,8 @@ const materialModules = [
     ListaPartidaComponent,
     GolpesComponent,
     PartidaComponent,
-    RelatorioComponent
+    RelatorioComponent,
+    GraficoComponent
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,7 @@ const materialModules = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     [...materialModules],
     ToastrModule.forRoot({positionClass :'toast-bottom-right'}),
   ],
